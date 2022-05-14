@@ -10,7 +10,7 @@ const Checkbox: React.FC<Props> = ({ label, name }) => {
     <div className="block">
       <div className="mt-2">
         <div>
-          <label className="inline-flex items-center">
+          <label className="flex items-center">
             <input
               type="checkbox"
               name={name}

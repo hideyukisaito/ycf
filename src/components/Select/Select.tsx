@@ -7,7 +7,7 @@ type Props = {
 }
 
 const Select: React.FC<Props> = ({ label, options, name }) => {
-  const optionElements = options.map((option) => <option>{option}</option>)
+  const optionElements = options.map((option) => <option key={option}>{option}</option>)
 
   return (
     <label className="block">

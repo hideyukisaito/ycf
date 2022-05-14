@@ -9,14 +9,12 @@ import TextArea from './components/TextArea'
 import EmailInput from './components/EmailInput'
 import Checkbox from './components/Checkbox'
 import TelephoneInput from './components/TelephoneInput'
+import StickyAlert from './components/StickyAlert'
 
 function App() {
   return (
     <div className='App container flex flex-col'>
-      <div className="flex flex-col justify-end items-center py-4 bg-error text-sm font-medium text-white">
-        <p>入力項目に誤りがあります。</p>
-        <p>赤枠の入力欄をご確認ください。</p>
-      </div>
+      <StickyAlert />
       <Header />
       <main className='flex flex-col gap-8 px-8 py-4'>
         <Breadcrumbs />
@@ -87,7 +85,19 @@ function App() {
           </section>
 
           <section>
-            <input type='button' value='入力内容を確認する' />
+            <input
+              type='button'
+              value='入力内容を確認する'
+              className='
+                flex justify-center
+                py-4
+                w-full
+                bg-black
+                text-white text-bold
+                rounded-md
+                active:bg-gray-500
+              '
+            />
           </section>
         </form>
       </main>
