@@ -2,18 +2,21 @@ import './App.css'
 import Header from './components/Header'
 import Breadcrumbs from './components/Breadcrumbs'
 import Footer from './components/Footer'
-import RequiredLabel from './components/RequiredLabel'
 import FormSectionHeader from './components/FormSectionHeader'
 import Select from './components/Select'
 import TextInput from './components/TextInput'
 import TextArea from './components/TextArea'
 import EmailInput from './components/EmailInput'
-import Checkbox from './components/Checkbox/Checkbox'
+import Checkbox from './components/Checkbox'
 import TelephoneInput from './components/TelephoneInput'
 
 function App() {
   return (
     <div className='App container flex flex-col'>
+      <div className="flex flex-col justify-end items-center py-4 bg-error text-sm font-medium text-white">
+        <p>入力項目に誤りがあります。</p>
+        <p>赤枠の入力欄をご確認ください。</p>
+      </div>
       <Header />
       <main className='flex flex-col gap-8 px-8 py-4'>
         <Breadcrumbs />

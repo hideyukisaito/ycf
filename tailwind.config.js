@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'required': '#ff0000'
+        'required': '#ff0000',
+        'error': '#ff0000',
       },
     },
   },
