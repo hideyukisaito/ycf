@@ -3,13 +3,16 @@ import React from "react"
 type Props = {
   label: string
   rows: number
+  name?: string
 }
 
-const TextArea: React.FC<Props> = ({ label, rows }) => {
+const TextArea: React.FC<Props> = ({ label, rows, name }) => {
   return(
     <label className="block">
       <span className="inline-block mb-2 text-gray-700">{label}</span>
-        <textarea className="
+        <textarea
+          name={name}
+          className="
             mt-1
             block
             w-full

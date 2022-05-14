@@ -4,16 +4,16 @@ import GeneralTextInput from "../GeneralTextInput"
 type Props = {
   label: string
   name?: string
-  autocomplete?: string
+  isEnableAutoComplete?: boolean
 }
 
-const TextInput: React.FC<Props> = ({ label, name, autocomplete }) => {
+const TelephoneInput: React.FC<Props> = ({ label, name, isEnableAutoComplete = false }) => {
   return (
     <label className="block">
       <span className="inline-block mb-2 text-gray-700">{label}</span>
-      <GeneralTextInput name={name} autocomplete={autocomplete} />
+      <GeneralTextInput type="tel" name="tel" autocomplete={isEnableAutoComplete ? 'tel' : ''} />
     </label>
   )
 }
 
-export default TextInput
+export default TelephoneInput

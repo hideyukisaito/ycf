@@ -3,15 +3,18 @@ import React from "react"
 type Props = {
   label: string
   options: string[]
+  name?: string
 }
 
-const Select: React.FC<Props> = ({ label, options }) => {
+const Select: React.FC<Props> = ({ label, options, name }) => {
   const optionElements = options.map((option) => <option>{option}</option>)
 
   return (
     <label className="block">
       <span className="inline-block mb-2 text-gray-700">{label}</span>
-      <select className="
+      <select
+        name={name}
+        className="
           block
           w-full
           mt-1
