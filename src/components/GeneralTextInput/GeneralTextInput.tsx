@@ -39,7 +39,7 @@ const GeneralTextInput: React.FC<Props> = ({
 
   return (
     <input
-      {...register(name, { required: isRequired })}
+      {...register(name, { required: { value: isRequired, message: isRequired ? '必須' : '' } })}
       type={type}
       name={name}
       autoComplete={autocomplete}

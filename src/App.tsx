@@ -15,8 +15,9 @@ import { useForm, FormProvider, useFormContext } from "react-hook-form"
 function App() {
   const methods = useForm()
   const onSubmit = (data: any) => console.log(data)
+  const watchIsCallable = methods.watch('is-callable', false)
 
-  console.log(methods.formState.errors)
+  console.log('watchIsCallable', watchIsCallable)
 
   const hasError = Object.keys(methods.formState.errors).length > 0
 
@@ -52,7 +53,7 @@ function App() {
                 name='inquiry-about'
               />
               <TextInput label='件名' name='inquiry-title' required={true} />
-              <TextArea label='お問い合わせの詳細' rows={5} name='inquiry-detail' required={true} />
+              <TextArea label='お問い合わせの詳細' rows={5} name='inquiry-detail' isRequired={true} />
             </section>
 
             <section className='flex flex-col gap-4'>
@@ -80,7 +81,9 @@ function App() {
               <TextInput label='郵便番号' name='postal-code' />
               <TextInput label='住所' name='address' />
               <Checkbox label='電話での返答を希望する' name='is-callable' />
-              <TelephoneInput label='電話番号' name='tel' />
+              {watchIsCallable &&
+                <TelephoneInput label='電話番号' name='tel' />
+              }
             </section>
 
             <section>

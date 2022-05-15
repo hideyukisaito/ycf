@@ -44,8 +44,8 @@ module.exports = {
         },
       },
       animation: {
-        appear: 'appear 0.5s linear',
-        disappear: 'disappear 0.5s linear',
+        appear: 'appear 0.3s ease-out',
+        disappear: 'disappear 0.3s linear',
         active: 'active 0.5s ease-out',
         inactive: 'inactive 0.5s ease-out',
       },

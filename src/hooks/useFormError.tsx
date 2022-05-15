@@ -3,6 +3,7 @@ import { useFormContext } from "react-hook-form"
 
 export type TFormError = {
   type: string,
+  message: string
   [x: string]: any
 }
 

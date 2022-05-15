@@ -9,7 +9,7 @@ type Props = {
 
 const TelephoneInput: React.FC<Props> = ({ label, name, isEnableAutoComplete = false }) => {
   return (
-    <label className="block">
+    <label className="block animate-appear">
       <span className="inline-block mb-2 text-gray-700">{label}</span>
       <GeneralTextInput
         type="tel"
