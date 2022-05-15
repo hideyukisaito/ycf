@@ -1,14 +1,18 @@
 import React from "react"
-import { useFormContext } from "react-hook-form"
+import { RegisterOptions, useFormContext } from "react-hook-form"
 
-type Props = {
+export type TTextInputProps = {
+  label: string
   name: string
   type?: string
   autocomplete?: string
   placeholder?: string
-  pattern?: RegExp | null
-  patternErrorMessage?: string
+  isEnableAutoComplete?: boolean
   isRequired?: boolean
+  registerOptions?: Partial<RegisterOptions>
+}
+
+type Props = Partial<TTextInputProps> & {
   isError?: boolean
 }
 
@@ -17,10 +21,9 @@ const GeneralTextInput: React.FC<Props> = ({
   type = 'text',
   autocomplete = '',
   placeholder = '',
-  pattern = null,
-  patternErrorMessage = '',
   isRequired = false,
   isError = false,
+  registerOptions = {},
 }) => {
   const { register } = useFormContext()
 
@@ -41,19 +44,17 @@ const GeneralTextInput: React.FC<Props> = ({
     classNames.push('border-solid', 'border-error', 'border-2')
   }
 
+  Object.assign(registerOptions, {
+    required: {
+      value: isRequired,
+      message: isRequired ? '必須' : '',
+    }
+  })
+
   return (
     <input
       {
-        ...register(name, {
-          required: {
-            value: isRequired,
-            message: isRequired ? '必須' : '',
-          },
-          pattern: pattern ? {
-            value: pattern,
-            message: patternErrorMessage,
-          } : undefined,
-        })
+        ...register(name!, registerOptions)
       }
       type={type}
       name={name}

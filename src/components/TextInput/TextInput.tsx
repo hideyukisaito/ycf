@@ -1,41 +1,31 @@
-import React from "react"
-import useFormError from "../../hooks/useFormError"
-import ErorrLabel from "../ErrorLabel"
-import GeneralTextInput from "../GeneralTextInput"
+import React from 'react'
+import useFormError from '../../hooks/useFormError'
+import ErorrLabel from '../ErrorLabel'
+import GeneralTextInput, { type TTextInputProps } from '../GeneralTextInput'
 
-type Props = {
-  label: string
-  name: string
-  pattern?: RegExp
-  patternErrorMessage?: string
-  placeholder?: string
-  required?: boolean
-  autocomplete?: string
-}
-
-const TextInput: React.FC<Props> = ({
+const TextInput: React.FC<TTextInputProps> = ({
   label,
   name,
-  pattern = null,
-  patternErrorMessage = '',
+  type = 'text',
   placeholder = '',
-  required = false,
+  isRequired = false,
   autocomplete,
+  registerOptions = {},
 }) => {
   const { error, hasError } = useFormError(name)
 
   return (
-    <label className="block">
-      <span className="inline-block mb-2 text-gray-700">{label}</span>
+    <label className='block'>
+      <span className='input-label'>{label}</span>
       {hasError && <ErorrLabel message={error?.message} />}
       <GeneralTextInput
         name={name}
-        pattern={pattern}
-        patternErrorMessage={patternErrorMessage}
+        type={type}
         placeholder={placeholder}
         autocomplete={autocomplete}
-        isRequired={required}
+        isRequired={isRequired}
         isError={hasError}
+        registerOptions={registerOptions}
       />
     </label>
   )

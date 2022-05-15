@@ -3,7 +3,7 @@ import useFormError from '../../hooks/useFormError'
 import ErorrLabel from '../ErrorLabel'
 import GeneralTextInput, { type TTextInputProps } from '../GeneralTextInput'
 
-const TelephoneInput: React.FC<TTextInputProps> = ({
+const PostalCodeInput: React.FC<TTextInputProps> = ({
   label,
   name,
   isEnableAutoComplete = false,
@@ -13,19 +13,20 @@ const TelephoneInput: React.FC<TTextInputProps> = ({
   const { error, hasError } = useFormError(name)
   
   return (
-    <label className='block animate-appear'>
+    <label className='block'>
       <span className='input-label'>{label}</span>
       {hasError && <ErorrLabel message={error?.message} />}
       <GeneralTextInput
-        type='tel'
-        name='tel'
-        placeholder='例) 0312345678'
-        autocomplete={isEnableAutoComplete ? 'tel' : ''}
+        type='text'
+        name={name}
+        placeholder='例) 100-0000'
+        autocomplete={isEnableAutoComplete ? name : ''}
+        isRequired={isRequired}
         isError={hasError}
         registerOptions={Object.assign(registerOptions, {
           pattern: {
-            value: /^0[-0-9]{9,12}$/,
-            message: '入力形式に誤りがあります。',
+            value: /^[0-9]{3}-?[0-9]{4}$/,
+            message: '7ケタの数字を入力してください。',
           }
         })}
       />
@@ -33,4 +34,4 @@ const TelephoneInput: React.FC<TTextInputProps> = ({
   )
 }
 
-export default TelephoneInput
+export default PostalCodeInput
