@@ -32,7 +32,7 @@ function App() {
           </header>
 
           <form className='flex flex-col gap-12' autoComplete='on' onSubmit={methods.handleSubmit(onSubmit)}>
-            <section className='flex flex-col gap-4'>
+            <fieldset className='flex flex-col gap-4'>
               <FormSectionHeader
                 label='1.お問い合わせ内容'
                 isRequired={true}
@@ -50,9 +50,9 @@ function App() {
               />
               <TextInput label='件名' name='inquiry-title' required={true} />
               <TextArea label='お問い合わせの詳細' rows={5} name='inquiry-detail' isRequired={true} />
-            </section>
+            </fieldset>
 
-            <section className='flex flex-col gap-4'>
+            <fieldset className='flex flex-col gap-4'>
               <FormSectionHeader
                 label='2.お名前とメールアドレス'
                 isRequired={true}
@@ -66,9 +66,9 @@ function App() {
                 <TextInput label='名 (ふりがな)' name='given-name-kana' required={true} />
               </div>
               <EmailInput label='メールアドレス' isRequired={true} />
-            </section>
+            </fieldset>
 
-            <section className='flex flex-col gap-4'>
+            <fieldset className='flex flex-col gap-4'>
               <FormSectionHeader
                 label='3.その他の項目'
                 isRequired={false}
@@ -86,9 +86,9 @@ function App() {
               {watchIsCallable &&
                 <TelephoneInput label='電話番号' name='tel' />
               }
-            </section>
+            </fieldset>
 
-            <section>
+            <fieldset>
               <input
                 type='submit'
                 value='入力内容を確認する'
@@ -102,7 +102,7 @@ function App() {
                   active:bg-gray-500
                 '
               />
-            </section>
+            </fieldset>
           </form>
         </main>
         <Footer />
