@@ -1,19 +1,32 @@
 import './App.css'
+import {
+  Location,
+  ReactLocation,
+  Router,
+} from '@tanstack/react-location'
 import Header from './components/Header'
 import Breadcrumbs from './components/Breadcrumbs'
 import Footer from './components/Footer'
-import ContactForm from './containers/ContactForm/ContactForm'
+import Home from './pages/Home'
+import Contact from './pages/Contact'
 
-function App() {
-  const onSubmit = (data: any) => console.log(data)
+const location = new ReactLocation()
 
+const App: React.FC = () => {
   return (
-      <div className='App container flex flex-col'>
-        <Header />
-        <Breadcrumbs />
-        <ContactForm onSubmit={onSubmit} />
-        <Footer />
-      </div>
+    <div className='App flex flex-col'>
+      <Header />
+      <Breadcrumbs />
+      <Router
+        location={location}
+        routes={[
+          { path: '/', element: <Home /> },
+          { path: '/contact', element: <Contact /> }
+        ]}
+      >
+      </Router>
+      <Footer />
+    </div>
   )
 }
 
