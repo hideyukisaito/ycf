@@ -1,27 +1,32 @@
 import React from "react"
+import { useFormContext } from "react-hook-form"
 
 type Props = {
   isVisible?: boolean
 }
 
 const StickyAlert: React.FC<Props> = ({ isVisible = false }) => {
+  const { formState: { errors } } = useFormContext()
+  const hasError = Object.keys(errors).length > 0
+
   const classNames = [
     'flex',
     'flex-col',
     'justify-center',
     'items-center',
     'w-full',
+    'h-16',
     'sticky',
     'top-0',
+    '-margin-10',
     'z-100',
-    'h-16',
     'text-sm',
     'font-bold',
     'text-white',
     'bg-error',
   ]
 
-  classNames.push(isVisible ? 'block' : 'hidden')
+  classNames.push(hasError ? 'block' : 'hidden')
 
   return (
     <div className={classNames.join(' ')}>

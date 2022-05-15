@@ -6,6 +6,8 @@ type Props = {
   type?: string
   autocomplete?: string
   placeholder?: string
+  pattern?: RegExp | null
+  patternErrorMessage?: string
   isRequired?: boolean
   isError?: boolean
 }
@@ -15,6 +17,8 @@ const GeneralTextInput: React.FC<Props> = ({
   type = 'text',
   autocomplete = '',
   placeholder = '',
+  pattern = null,
+  patternErrorMessage = '',
   isRequired = false,
   isError = false,
 }) => {
@@ -39,7 +43,18 @@ const GeneralTextInput: React.FC<Props> = ({
 
   return (
     <input
-      {...register(name, { required: { value: isRequired, message: isRequired ? '必須' : '' } })}
+      {
+        ...register(name, {
+          required: {
+            value: isRequired,
+            message: isRequired ? '必須' : '',
+          },
+          pattern: pattern ? {
+            value: pattern,
+            message: patternErrorMessage,
+          } : undefined,
+        })
+      }
       type={type}
       name={name}
       autoComplete={autocomplete}

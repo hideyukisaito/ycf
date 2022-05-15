@@ -16,25 +16,21 @@ function App() {
   const methods = useForm()
   const onSubmit = (data: any) => console.log(data)
   const watchIsCallable = methods.watch('is-callable', false)
-
-  console.log('watchIsCallable', watchIsCallable)
-
   const hasError = Object.keys(methods.formState.errors).length > 0
 
   return (
-    <div className='App container flex flex-col'>
-      <StickyAlert isVisible={hasError} />
-      <Header />
-      <main className='flex flex-col gap-8 px-8 py-4'>
-        <Breadcrumbs />
+    <FormProvider {...methods}>
+      <div className='App container flex flex-col'>
+        <StickyAlert isVisible={hasError} />
+        <Header />
+        <main className='flex flex-col gap-8 px-8 py-4'>
+          <Breadcrumbs />
 
-        <header className='flex flex-col justify-center items-center'>
-          <h1 className='text-md font-bold my-1'>お問い合わせフォーム</h1>
-          <p className='my-2 text-xs'><a href='#' className='text-blue-500 underline'>よくあるお問い合わせ</a>もご覧ください。</p>
-        </header>
+          <header className='flex flex-col justify-center items-center'>
+            <h1 className='text-md font-bold my-1'>お問い合わせフォーム</h1>
+            <p className='my-2 text-xs'><a href='#' className='text-blue-500 underline'>よくあるお問い合わせ</a>もご覧ください。</p>
+          </header>
 
-
-        <FormProvider {...methods}>
           <form className='flex flex-col gap-12' autoComplete='on' onSubmit={methods.handleSubmit(onSubmit)}>
             <section className='flex flex-col gap-4'>
               <FormSectionHeader
@@ -69,7 +65,7 @@ function App() {
                 <TextInput label='姓 (ふりがな)' name='family-name-kana' required={true} />
                 <TextInput label='名 (ふりがな)' name='given-name-kana' required={true} />
               </div>
-              <EmailInput label='メールアドレス' required={true} />
+              <EmailInput label='メールアドレス' isRequired={true} />
             </section>
 
             <section className='flex flex-col gap-4'>
@@ -78,7 +74,13 @@ function App() {
                 isRequired={false}
               />
               <TextInput label='会社名' name='organization' />
-              <TextInput label='郵便番号' name='postal-code' />
+              <TextInput
+                label='郵便番号'
+                name='postal-code'
+                pattern={/^[0-9]{3}-?[0-9]{4}$/}
+                patternErrorMessage='7ケタの数字を入力してください。'
+                placeholder='例) 100-0000'
+              />
               <TextInput label='住所' name='address' />
               <Checkbox label='電話での返答を希望する' name='is-callable' />
               {watchIsCallable &&
@@ -102,10 +104,10 @@ function App() {
               />
             </section>
           </form>
-        </FormProvider>
-      </main>
-      <Footer />
-    </div>
+        </main>
+        <Footer />
+      </div>
+    </FormProvider>
   )
 }
 

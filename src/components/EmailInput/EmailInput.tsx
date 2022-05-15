@@ -6,10 +6,10 @@ import GeneralTextInput from "../GeneralTextInput"
 type Props = {
   label: string
   isEnableAutoComplete?: boolean
-  required?: boolean
+  isRequired?: boolean
 }
 
-const EmailInput: React.FC<Props> = ({ label, isEnableAutoComplete = false, required = false }) => {
+const EmailInput: React.FC<Props> = ({ label, isEnableAutoComplete = false, isRequired = false }) => {
   const name = 'email'
   const { error, hasError } = useFormError(name)
   
@@ -20,8 +20,11 @@ const EmailInput: React.FC<Props> = ({ label, isEnableAutoComplete = false, requ
       <GeneralTextInput
         type="email"
         name={name}
+        placeholder='例) user@example.com'
+        pattern={/[a-zA-Z0-9_\.\+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-\.]+/}
+        patternErrorMessage='入力形式に誤りがあります。'
         autocomplete={isEnableAutoComplete ? name : ''}
-        isRequired={required}
+        isRequired={isRequired}
         isError={hasError}
       />
     </label>

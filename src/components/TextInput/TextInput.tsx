@@ -6,6 +6,9 @@ import GeneralTextInput from "../GeneralTextInput"
 type Props = {
   label: string
   name: string
+  pattern?: RegExp
+  patternErrorMessage?: string
+  placeholder?: string
   required?: boolean
   autocomplete?: string
 }
@@ -13,6 +16,9 @@ type Props = {
 const TextInput: React.FC<Props> = ({
   label,
   name,
+  pattern = null,
+  patternErrorMessage = '',
+  placeholder = '',
   required = false,
   autocomplete,
 }) => {
@@ -24,6 +30,9 @@ const TextInput: React.FC<Props> = ({
       {hasError && <ErorrLabel message={error?.message} />}
       <GeneralTextInput
         name={name}
+        pattern={pattern}
+        patternErrorMessage={patternErrorMessage}
+        placeholder={placeholder}
         autocomplete={autocomplete}
         isRequired={required}
         isError={hasError}
