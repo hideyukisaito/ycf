@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.input-label {
+  @apply inline-block mb-2 text-gray-700;
+}

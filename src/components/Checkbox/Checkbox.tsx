@@ -1,17 +1,21 @@
 import React from "react"
+import { useFormContext } from "react-hook-form"
 
 type Props = {
   label: string
-  name?: string
+  name: string
 }
 
 const Checkbox: React.FC<Props> = ({ label, name }) => {
+  const { register } = useFormContext()
+
   return (
     <div className="block">
       <div className="mt-2">
         <div>
           <label className="flex items-center">
             <input
+              {...register(name)}
               type="checkbox"
               name={name}
               className="

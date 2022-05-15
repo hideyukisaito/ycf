@@ -13,7 +13,7 @@ const FormSectionHeader: React.FC<Props> = ({ label, isRequired }: Props) => {
       {
         isRequired ? <RequiredLabel /> : <OptionalLabel />
       }
-      <h2 className="font-bold">{label}</h2>
+      <legend className="font-bold"><h2>{label}</h2></legend>
     </header>
   )
 }

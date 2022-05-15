@@ -1,16 +1,35 @@
-import React from "react"
-import GeneralTextInput from "../GeneralTextInput"
+import React from 'react'
+import useFormError from '../../hooks/useFormError'
+import ErorrLabel from '../ErrorLabel'
+import GeneralTextInput, { type TTextInputProps } from '../GeneralTextInput'
 
-type Props = {
-  label: string
-  isEnableAutoComplete?: boolean
-}
-
-const EmailInput: React.FC<Props> = ({ label, isEnableAutoComplete = false }) => {
+const EmailInput: React.FC<TTextInputProps> = ({
+  label,
+  name,
+  isEnableAutoComplete = false,
+  isRequired = false,
+  registerOptions = {},
+}) => {
+  const { error, hasError } = useFormError(name)
+  
   return (
-    <label className="block">
-      <span className="inline-block mb-2 text-gray-700">{label}</span>
-      <GeneralTextInput type="email" name="email" autocomplete={isEnableAutoComplete ? 'email' : ''} />
+    <label className='block'>
+      <span className='input-label'>{label}</span>
+      {hasError && <ErorrLabel message={error?.message} />}
+      <GeneralTextInput
+        type='email'
+        name={name}
+        placeholder='例) user@example.com'
+        autocomplete={isEnableAutoComplete ? name : ''}
+        isRequired={isRequired}
+        isError={hasError}
+        registerOptions={Object.assign(registerOptions, {
+          pattern: {
+            value: /[a-zA-Z0-9_\.\+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-\.]+/,
+            message: '入力形式に誤りがあります。',
+          }
+        })}
+      />
     </label>
   )
 }
