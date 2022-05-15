@@ -1,5 +1,6 @@
 import React from "react"
 import { useFormContext } from "react-hook-form"
+import useFormError from "../../hooks/useFormError"
 
 type Props = {
   label: string
@@ -14,13 +15,13 @@ const TextArea: React.FC<Props> = ({
   rows,
   required = false,
 }) => {
-  const { register, formState: { errors } } = useFormContext()
+  const { register } = useFormContext()
+  const { error, hasError } = useFormError(name)
   let errorMessage: string | undefined
 
-  if (Object.keys(errors).includes(name)) {
-    switch (errors[name].type) {
+  if (hasError && error) {
+    switch (error.type) {
       case 'required':
-        console.log(errors[name].type === 'required')
         errorMessage = '※必須'
         break
       default:
@@ -28,7 +29,6 @@ const TextArea: React.FC<Props> = ({
     }
   }
 
-  const isError = errorMessage !== undefined
   const classNames = [
     'mt-1',
     'block',
@@ -42,14 +42,14 @@ const TextArea: React.FC<Props> = ({
     'focus:ring-opacity-50',
   ]
 
-  if (isError) {
+  if (hasError) {
     classNames.push('border-solid', 'border-error', 'border-2')
   }
 
   return (
     <label className="block">
       <span className="inline-block mb-2 text-gray-700">{label}</span>
-      {isError &&
+      {hasError &&
         <span className="inline-block ml-2 mb-2 font-bold text-xs text-error">{errorMessage}</span>
       }
       <textarea
