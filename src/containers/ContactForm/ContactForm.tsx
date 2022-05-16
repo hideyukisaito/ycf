@@ -46,14 +46,20 @@ const ContactForm: React.FC<Props> = ({ onSubmit }) => {
 
       <main className='
         flex flex-col items-center self-center gap-8
-        lg:w-[500px]
+        lg:w-[560px]
         relative
         px-8 py-4 lg:px-0
       '>
         <header className='flex flex-col justify-center items-center'>
           <h1 className='text-md lg:text-xl font-bold my-1'>お問い合わせフォーム</h1>
           <p className='my-2 text-xs lg:text-[14px]'>
-            <a href='#' className='text-blue-500 underline'>よくあるお問い合わせ</a>もご覧ください。
+            <a href='#' className='text-blue-500 underline'>
+              <span>よくあるお問い合わせ</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="inline h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+            もご覧ください。
           </p>
         </header>
 
@@ -71,7 +77,7 @@ const ContactForm: React.FC<Props> = ({ onSubmit }) => {
             'flex-col',
             'gap-14',
             'relative',
-            'lg:w-full',
+            'lg:w-4/5',
             isShowConfirmation ? 'fade-out' : 'opacity-100'
           )}
           autoComplete='on'
@@ -188,8 +194,7 @@ const ContactForm: React.FC<Props> = ({ onSubmit }) => {
           </fieldset>
         </form>
         
-        {isShowConfirmation && <ContactFormConfirmation data={formData} isVisible={isShowConfirmation} />}
-        {/* <ContactFormConfirmation data={formData} isVisible={isShowConfirmation} /> */}
+        {isShowConfirmation && <ContactFormConfirmation formData={formData} isVisible={isShowConfirmation} />}
       </main>
     </FormProvider>
   )
