@@ -48,6 +48,24 @@ const FormData: React.FC<TFormDataProps> = ({ title, content }) => {
 }
 
 // ------------------------------------------------------------------------
+type TNoteProps = {
+  children: React.ReactNode | string
+}
+
+const Note: React.FC<TNoteProps> = ({ children }) => {
+  return (
+    <div className='flex flex-row items-center mb-2'>
+      <div className='flex items-center w-8 h-8'>
+        <svg xmlns="http://www.w3.org/2000/svg" width='20' height='20' className="h-100 w-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <p className='leading-relaxed pl-2 md:p-0'>{children}</p>
+    </div>
+  )
+}
+
+// ------------------------------------------------------------------------
 type TContactFormConfirmationProps = {
   formData: {
     [x: string]: any
@@ -87,6 +105,11 @@ const ContactFormConfirmation: React.FC<TContactFormConfirmationProps> = ({
         ? 'visible opacity-100 duration-500 delay-500'
         : 'invisible opacity-0 duration-500'
     )}>
+      <section className='flex flex-col self-center text-xs'>
+        <Note>土日祝日のお問い合わせに関しましては翌営業日以降にご連絡させていただきます。</Note>
+        <Note>数日経っても返答がない場合は恐れ入りますが再度お問い合わせください</Note>
+      </section>
+
       <FormDataSection title='お問い合わせ内容'>
         <FormData
           title={inputLabelsAndNames.inquiryAbout.label}
