@@ -12,7 +12,6 @@ module.exports = {
       keyframes: {
         appear: {
           '0%': {
-            display: 'block',
             opacity: 0,
           },
           '100%': {
@@ -21,17 +20,14 @@ module.exports = {
         },
         disappear: {
           '0%': {
-            display: 'block',
             opacity: 1,
           },
           '100%': {
-            display: 'none',
             opacity: 0,
           },
         },
         'expand-vertically': {
           '0%': {
-            display: 'block',
             height: 0,
           },
           '100%': {
@@ -43,7 +39,6 @@ module.exports = {
             height: '4rem',
           },
           '100%': {
-            display: 'none',
             height: 0,
           },
         },
@@ -62,8 +57,8 @@ module.exports = {
         },
       },
       animation: {
-        appear: 'appear 0.3s ease-out',
-        disappear: 'disappear 0.3s linear',
+        appear: 'appear 300ms linear forwards',
+        disappear: 'disappear 0.3s linear forwards',
         'expand-vertically': 'expand-vertically 0.5s ease-out',
         'collapse-vertically': 'collapse-vertically 0.5s ease-out',
         active: 'active 0.5s ease-out',

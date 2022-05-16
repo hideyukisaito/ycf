@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import classNames from 'classnames'
 import { inputLabelsAndNames } from '../../constants/inputLabelsAndNames'
 
+// ------------------------------------------------------------------------
 type TSectionProps = {
   title: string
   children?: React.ReactNode
@@ -22,6 +23,7 @@ const FormDataSection: React.FC<TSectionProps> = ({ title, children }) => {
   )
 }
 
+// ------------------------------------------------------------------------
 type TFormDataProps = {
   title: string
   content: string
@@ -45,23 +47,30 @@ const FormData: React.FC<TFormDataProps> = ({ title, content }) => {
   )
 }
 
-type Props = {
+// ------------------------------------------------------------------------
+type TContactFormConfirmationProps = {
   formData: {
     [x: string]: any
   }
   isVisible: boolean
+  onConfirmed: (data: any) => void
 }
 
-const ContactFormConfirmation: React.FC<Props> = ({ formData, isVisible = false }) => {
+const ContactFormConfirmation: React.FC<TContactFormConfirmationProps> = ({
+  formData,
+  isVisible = false,
+  onConfirmed,
+}) => {
   const [isConfirmed, setIsConfirmed] = useState(false)
 
-  const handleClickConfirmation = (e: React.SyntheticEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement
-    setIsConfirmed(target.checked)
+  // 「個人情報の取り扱い」のチェックボックスを押した際のハンドラ
+  const handleChangeConfirmationCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsConfirmed(e.target.checked)
   }
 
-  const handleSubmit = (e: React.SyntheticEvent) => {
-    console.log('送信', formData)
+  // 「送信する」ボタンを押した際のハンドラ
+  const handleConfirmed = () => {
+    onConfirmed(formData)
   }
 
   return (
@@ -156,12 +165,13 @@ const ContactFormConfirmation: React.FC<Props> = ({ formData, isVisible = false 
           type="checkbox"
           name='accept-terms-of-use'
           className='
+            w-5
+            h-5
             rounded
-            text-black
             focus:border-transparent focus:bg-gray-200
             focus:ring-1 focus:ring-offset-2 focus:ring-gray-500
           '
-          onClick={handleClickConfirmation}
+          onChange={handleChangeConfirmationCheckbox}
         />
         <span className='ml-2 text-sm'>
           <a href='#_' className='inline-flex items-end text-blue-700 underline'>
@@ -174,19 +184,19 @@ const ContactFormConfirmation: React.FC<Props> = ({ formData, isVisible = false 
       </label>
 
       <button
-        className='
-          flex justify-center self-center
-          py-4
-          w-full
-          lg:w-[200px]
-          lg:px-12
-          bg-black
-          text-white text-bold
-          rounded-md
-          active:bg-gray-500
-        '
+        className={classNames(
+          'flex', 'justify-center', 'self-center',
+          'py-4', 'lg:px-12',
+          'w-full', 'lg:w-[200px]',
+          'bg-black', 'disabled:bg-gray-200', 'active:bg-gray-500',
+          'text-white', 'text-bold',
+          'rounded-md',
+          'disabled:hidden',
+          'disabled:cursor-not-allowed',
+          isConfirmed && 'animate-appear',
+        )}
         disabled={!isConfirmed}
-        onClick={handleSubmit}
+        onClick={handleConfirmed}
       >
         送信する
       </button>
