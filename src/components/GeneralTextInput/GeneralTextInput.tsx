@@ -41,7 +41,7 @@ const GeneralTextInput: React.FC<Props> = ({
   ]
 
   if (isError) {
-    classNames.push('border-solid', 'border-error', 'border-2')
+    classNames.push('border-solid', 'border-error', 'border-[3px]')
   }
 
   Object.assign(registerOptions, {

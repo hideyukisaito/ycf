@@ -6,7 +6,7 @@ import EmailInput from "../../components/EmailInput"
 import FormSectionHeader from "../../components/FormSectionHeader"
 import PostalCodeInput from "../../components/PostalCodeInput"
 import Select from "../../components/Select"
-import StickyAlert from "../../components/StickyAlert"
+import InputErrorAlert from "../../components/InputErrorAlert"
 import TelephoneInput from "../../components/TelephoneInput"
 import TextArea from "../../components/TextArea"
 import TextInput from "../../components/TextInput"
@@ -39,9 +39,16 @@ const ContactForm: React.FC<Props> = ({ onSubmit }) => {
 
   return (
     <FormProvider {...methods}>
-      <StickyAlert isVisible={hasError} />
+      <div className='flex md:hidden sticky top-0 z-50'>
+        <InputErrorAlert isVisible={hasError} />
+      </div>
 
-      <main className='flex flex-col items-center gap-8 relative px-8 py-4'>
+      <main className='
+        flex flex-col items-center self-center gap-8
+        lg:w-[500px]
+        relative
+        px-8 py-4 lg:px-0
+      '>
         <header className='flex flex-col justify-center items-center'>
           <h1 className='text-md lg:text-xl font-bold my-1'>お問い合わせフォーム</h1>
           <p className='my-2 text-xs lg:text-[14px]'>
@@ -49,13 +56,21 @@ const ContactForm: React.FC<Props> = ({ onSubmit }) => {
           </p>
         </header>
 
+        <div className={classNames(
+          'hidden',
+          'md:flex',
+          'w-full',
+        )}>
+          <InputErrorAlert isVisible={hasError} />
+        </div>
+        
         <form
           className={classNames(
             'flex',
             'flex-col',
             'gap-12',
             'relative',
-            'lg:w-[500px]',
+            'lg:w-full',
             isShowConfirmation ? 'fade-out' : 'opacity-100'
           )}
           autoComplete='on'
@@ -75,7 +90,7 @@ const ContactForm: React.FC<Props> = ({ onSubmit }) => {
               name='inquiry-about'
             />
             <TextInput label='件名' name='inquiry-title' isRequired={true} />
-            <TextArea label='お問い合わせの詳細' rows={8} name='inquiry-detail' isRequired={true} />
+            <TextArea label='お問い合わせの詳細' rows={6} name='inquiry-detail' isRequired={true} />
           </fieldset>
 
           <fieldset className='flex flex-col gap-4'>

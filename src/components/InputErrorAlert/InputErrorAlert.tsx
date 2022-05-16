@@ -5,7 +5,7 @@ type Props = {
   isVisible?: boolean
 }
 
-const StickyAlert: React.FC<Props> = ({ isVisible = false }) => {
+const InputErrorAlert: React.FC<Props> = ({ isVisible = false }) => {
   const { formState: { errors } } = useFormContext()
   const hasError = Object.keys(errors).length > 0
 
@@ -25,12 +25,8 @@ const StickyAlert: React.FC<Props> = ({ isVisible = false }) => {
     'gap-4',
     'w-full',
     'h-24',
-    'sticky',
-    'top-0',
-    '-margin-10',
-    'z-100',
+    'lg:h-32',
     'text-sm',
-    'font-bold',
     'text-white',
     'bg-error',
   ]
@@ -39,9 +35,9 @@ const StickyAlert: React.FC<Props> = ({ isVisible = false }) => {
 
   return (
     <div className={classNames.join(' ')}>
-      <p>赤枠の入力内容に誤りがあります。</p>
+      <p className='font-bold'>入力内容に誤りがあります。</p>
       {errorTypes.length > 0 &&
-        <ul className="flex flex-col text-xs text-left">
+        <ul className="flex flex-col text-xs text-left gap-1">
           {errorTypes.includes('required') && <li>・必須項目が入力されていません。</li>}
           {errorTypes.includes('pattern') && <li>・入力形式に誤りがあります。</li>}
         </ul>
@@ -50,4 +46,4 @@ const StickyAlert: React.FC<Props> = ({ isVisible = false }) => {
   )
 }
 
-export default StickyAlert
+export default InputErrorAlert

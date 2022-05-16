@@ -33,7 +33,7 @@ const TextArea: React.FC<Props> = ({
   ]
 
   if (hasError) {
-    classNames.push('border-solid', 'border-error', 'border-2')
+    classNames.push('border-solid', 'border-error', 'border-[3px]')
   }
 
   return (
