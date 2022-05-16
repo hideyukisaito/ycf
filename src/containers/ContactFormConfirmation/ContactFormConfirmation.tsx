@@ -11,7 +11,7 @@ const FormDataSection: React.FC<TSectionProps> = ({ title, children }) => {
   return (
     <section className='
       flex flex-col gap-2
-      px-8 pt-4 pb-6
+      px-4 md:px-8 pt-4 pb-6
       border-solid border-black border-[2px] rounded-md
     '>
       <header className='w-max -mt-7 self-center bg-white px-2'>
@@ -29,7 +29,7 @@ type TFormDataProps = {
 
 const FormData: React.FC<TFormDataProps> = ({ title, content }) => {
   return (
-    <div className='group flex flex-row justify-between items-center px-4 py-2 hover:bg-gray-200 rounded-md cursor-pointer'>
+    <div className='group flex flex-row justify-between items-center px-2 md:px-4 py-2 hover:bg-gray-200 rounded-md cursor-pointer'>
       <div>
         <h4 className='text-md leading-loose'>{title}：</h4>
         <p className='leading-relaxed'>{content || '-'}</p>
