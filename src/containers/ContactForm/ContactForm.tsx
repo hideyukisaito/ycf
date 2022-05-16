@@ -23,7 +23,7 @@ const ContactForm: React.FC<Props> = ({ onSubmit }) => {
   const [formData, setFormData] = useState<{ [x: string]: any }>({})
   
   const methods = useForm()
-  const watchIsCallable = methods.watch('is-callable', false)
+  const watchIsCallable = methods.watch(inputLabelsAndNames.isCallable.name, false)
   const hasError = Object.keys(methods.formState.errors).length > 0
 
   const handleSubmit = (data: any) => {
@@ -81,6 +81,7 @@ const ContactForm: React.FC<Props> = ({ onSubmit }) => {
             <FormSectionHeader label='1.お問い合わせ内容' isRequired={true} />
             <Select
               label={inputLabelsAndNames.inquiryAbout.label}
+              name={inputLabelsAndNames.inquiryAbout.name}
               options={[
                 'なし',
                 'サービスA',
@@ -88,7 +89,6 @@ const ContactForm: React.FC<Props> = ({ onSubmit }) => {
                 'サービスC',
                 'その他',
               ]}
-              name={inputLabelsAndNames.inquiryAbout.name}
             />
             <TextInput
               label={inputLabelsAndNames.inquiryTitle.label}
