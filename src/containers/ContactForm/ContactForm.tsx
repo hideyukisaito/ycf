@@ -1,16 +1,17 @@
-import classNames from "classnames"
-import { useEffect, useState } from "react"
-import { FormProvider, useForm } from "react-hook-form"
-import Checkbox from "../../components/Checkbox"
-import EmailInput from "../../components/EmailInput"
-import FormSectionHeader from "../../components/FormSectionHeader"
-import PostalCodeInput from "../../components/PostalCodeInput"
-import Select from "../../components/Select"
-import InputErrorAlert from "../../components/InputErrorAlert"
-import TelephoneInput from "../../components/TelephoneInput"
-import TextArea from "../../components/TextArea"
-import TextInput from "../../components/TextInput"
-import ContactFormConfirmation from "../ContactFormConfirmation"
+import classNames from 'classnames'
+import { useEffect, useState } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
+import Checkbox from '../../components/Checkbox'
+import EmailInput from '../../components/EmailInput'
+import FormSectionHeader from '../../components/FormSectionHeader'
+import PostalCodeInput from '../../components/PostalCodeInput'
+import Select from '../../components/Select'
+import InputErrorAlert from '../../components/InputErrorAlert'
+import TelephoneInput from '../../components/TelephoneInput'
+import TextArea from '../../components/TextArea'
+import TextInput from '../../components/TextInput'
+import ContactFormConfirmation from '../ContactFormConfirmation'
+import { inputLabelsAndNames } from '../../constants/inputLabelsAndNames'
 import './ContactForm.css'
 
 type Props = {
@@ -68,7 +69,7 @@ const ContactForm: React.FC<Props> = ({ onSubmit }) => {
           className={classNames(
             'flex',
             'flex-col',
-            'gap-12',
+            'gap-14',
             'relative',
             'lg:w-full',
             isShowConfirmation ? 'fade-out' : 'opacity-100'
@@ -79,7 +80,7 @@ const ContactForm: React.FC<Props> = ({ onSubmit }) => {
           <fieldset className='flex flex-col gap-4'>
             <FormSectionHeader label='1.お問い合わせ内容' isRequired={true} />
             <Select
-              label='対象の製品・サービス'
+              label={inputLabelsAndNames.inquiryAbout.label}
               options={[
                 'なし',
                 'サービスA',
@@ -87,34 +88,84 @@ const ContactForm: React.FC<Props> = ({ onSubmit }) => {
                 'サービスC',
                 'その他',
               ]}
-              name='inquiry-about'
+              name={inputLabelsAndNames.inquiryAbout.name}
             />
-            <TextInput label='件名' name='inquiry-title' isRequired={true} />
-            <TextArea label='お問い合わせの詳細' rows={6} name='inquiry-detail' isRequired={true} />
+            <TextInput
+              label={inputLabelsAndNames.inquiryTitle.label}
+              name={inputLabelsAndNames.inquiryTitle.name}
+              isRequired={true}
+            />
+            <TextArea
+              label={inputLabelsAndNames.inquiryDetail.label}
+              name={inputLabelsAndNames.inquiryDetail.name}
+              rows={6}
+              isRequired={true}
+            />
           </fieldset>
 
           <fieldset className='flex flex-col gap-4'>
             <FormSectionHeader label='2.お名前とメールアドレス' isRequired={true} />
             <div className='flex flex-row justify-between gap-4 lg:gap-8'>
-              <TextInput label='姓' name='fanmily-name' autocomplete='family-name' isRequired={true} />
-              <TextInput label='名' name='given-name' autocomplete='given-name' isRequired={true} />
+              <TextInput
+                label={inputLabelsAndNames.familyName.label}
+                name={inputLabelsAndNames.familyName.name}
+                autocomplete='family-name'
+                isRequired={true}
+              />
+              <TextInput
+                label={inputLabelsAndNames.givenName.label}
+                name={inputLabelsAndNames.givenName.name}
+                autocomplete='given-name'
+                isRequired={true}
+              />
             </div>
             <div className='flex flex-row justify-between gap-4 lg:gap-8'>
-              <TextInput label='姓 (ふりがな)' name='family-name-kana' isRequired={true} />
-              <TextInput label='名 (ふりがな)' name='given-name-kana' isRequired={true} />
+              <TextInput
+                label={inputLabelsAndNames.familyNameKana.label}
+                name={inputLabelsAndNames.familyNameKana.name}
+                isRequired={true}
+              />
+              <TextInput
+                label={inputLabelsAndNames.givenNameKana.label}
+                name={inputLabelsAndNames.givenNameKana.name}
+                isRequired={true}
+              />
             </div>
-            <EmailInput label='メールアドレス' name='email' isRequired={true} />
-            <EmailInput label='メールアドレス (確認)' name='email-repeat' isRequired={true} />
+            <EmailInput
+              label={inputLabelsAndNames.email.label}
+              name={inputLabelsAndNames.email.name}
+              isRequired={true}
+            />
+            <EmailInput
+              label={inputLabelsAndNames.emailRepeat.label}
+              name={inputLabelsAndNames.emailRepeat.name}
+              isRequired={true}
+            />
           </fieldset>
 
           <fieldset className='flex flex-col gap-4'>
             <FormSectionHeader label='3.その他の項目' isRequired={false} />
-            <TextInput label='会社名' name='organization' />
-            <PostalCodeInput label='郵便番号' name='postal-code' />
-            <TextInput label='住所' name='address' />
-            <Checkbox label='電話での返答を希望する' name='is-callable' />
+            <TextInput
+              label={inputLabelsAndNames.organization.label}
+              name={inputLabelsAndNames.organization.name}
+            />
+            <PostalCodeInput
+              label={inputLabelsAndNames.postalCode.label}
+              name={inputLabelsAndNames.postalCode.name}
+            />
+            <TextInput
+              label={inputLabelsAndNames.address.label}
+              name={inputLabelsAndNames.address.name}
+            />
+            <Checkbox
+              label={inputLabelsAndNames.isCallable.label}
+              name={inputLabelsAndNames.isCallable.name}
+            />
             {watchIsCallable &&
-              <TelephoneInput label='電話番号' name='tel' />
+              <TelephoneInput
+              label={inputLabelsAndNames.tel.label}
+              name={inputLabelsAndNames.tel.name}
+              />
             }
           </fieldset>
 

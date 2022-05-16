@@ -19,7 +19,7 @@ const PostalCodeInput: React.FC<TTextInputProps> = ({
       <GeneralTextInput
         type='text'
         name={name}
-        placeholder='例) 100-0000'
+        placeholder='例) 1500000'
         autocomplete={isEnableAutoComplete ? name : ''}
         isRequired={isRequired}
         isError={hasError}
