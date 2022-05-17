@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { useLocation } from 'react-router-dom'
 import Checkbox from '../../components/Checkbox'
@@ -32,14 +32,27 @@ type TProps = {
 
 export const ContactForm: React.FC<TProps> = ({ onSubmit }) => {
   const {
+    control,
     formState: { errors },
     getValues,
     handleSubmit,
+    reset,
     trigger,
   } = useFormContext()
   
   // 電話連絡希望のチェックボックスを監視
-  const watchIsCallable = useWatch({ name: inputLabelsAndNames.isCallable.name })
+  const watchIsCallable = useWatch({ control, name: inputLabelsAndNames.isCallable.name })
+
+  // 電話連絡不可に変更された場合は電話番号をクリアする
+  useEffect(() => {
+    if (!watchIsCallable) {
+      reset({
+        'tel': '',
+      }, {
+        keepDefaultValues: true,
+      })
+    }
+  }, [watchIsCallable])
 
   // fade エフェクト用
   const { pathname } = useLocation()
