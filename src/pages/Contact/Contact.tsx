@@ -38,13 +38,6 @@ const Contact: React.FC = () => {
     })
   }
 
-  // 「送信する」
-  const handleConfirmed = (data: any) => {
-    console.log('確認した', data)
-
-    navigate('./complete', { replace: true })
-  }
-
   const handleComplete = (data: any) => console.log('完了', data)
   const handleError = (data: any) => console.log('エラー', data)
 
