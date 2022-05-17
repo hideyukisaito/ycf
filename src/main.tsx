@@ -9,14 +9,14 @@ import ContactFormCompletion from './containers/ContactFormCompletion'
 import ContactFormConfirmation from './containers/ContactFormConfirmation'
 
 // @ts-ignore
-import('./mocks/browser').then(({ worker }) => worker.start())
+import('./mocks/browser').then(({ worker }) => worker.start({ onUnhandledRequest: 'bypass' }))
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />}>
-          <Route path='/' element={<Home />} />
+          <Route index element={<Home />} />
           <Route path='contact' element={<Contact />}>
             <Route path='confirm' element={<ContactFormConfirmation />} />
             <Route path='complete' element={<ContactFormCompletion />} />

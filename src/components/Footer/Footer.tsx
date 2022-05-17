@@ -8,12 +8,12 @@ export const Footer: React.FC = () => {
         <nav className='flex flex-wrap justify-center -mx-5 -my-2'>
           <div className='px-5 py-2'>
             <a href='#' className='text-base leading-6 text-gray-500 hover:text-gray-900'>
-              当社について
+              会社概要
             </a>
           </div>
           <div className='px-5 py-2'>
             <a href='#' className='text-base leading-6 text-gray-500 hover:text-gray-900'>
-              利用料金
+              サービス
             </a>
           </div>
           <div className='px-5 py-2'>

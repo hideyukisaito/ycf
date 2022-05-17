@@ -7,7 +7,7 @@ export const ContactFormCompletion: React.FC = () => {
       'flex', 'flex-col', 'items-center',
     )}>
       <header>
-        <h1>お問い合わせを受け付けました。</h1>
+        <h1 className='lg:text-xl'>お問い合わせを受け付けました。</h1>
       </header>
     </div>
   )
