@@ -1,25 +1,28 @@
+import { useEffect } from 'react'
 import classNames from 'classnames'
-import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useLocation, useNavigate, useNavigationType, Outlet } from 'react-router-dom'
 import InputErrorAlert from '../../components/InputErrorAlert'
 import ContactForm from '../../containers/ContactForm'
-import ContactFormConfirmation from '../../containers/ContactFormConfirmation'
-
-const isConfirmation = (pathname: string) => pathname === '/contact/confirm'
+import { useHistoryStack } from '../../hooks/useHistoryStack'
 
 const Contact: React.FC = () => {
   const methods = useForm()
   const hasError = Object.keys(methods.formState.errors).length > 0
 
+  const history = useHistoryStack()
   const location = useLocation()
   const navigate = useNavigate()
   const navigationType = useNavigationType()
-  console.log('navigationType', navigationType)
 
+  // /contact/complete から戻った場合はフォームをリセットする
   useEffect(() => {
-    alert(`${location.pathname}, ${navigationType}`)
-  }, [location.pathname, navigationType])
+    if (history[history.length - 1] === '/contact/complete' &&
+        location.pathname === '/contact' &&
+        navigationType === 'POP') {
+      methods.reset()
+    }
+  }, [history.length, location.pathname, navigationType])
 
   // 「入力内容を確認する」
   const handleSubmit = (data: any) => {

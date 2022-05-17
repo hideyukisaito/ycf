@@ -76,16 +76,7 @@ const Note: React.FC<TNoteProps> = ({ children }) => {
 }
 
 // ------------------------------------------------------------------------
-type TContactFormConfirmationProps = {
-  formData?: {
-    [x: string]: any
-  }
-  onConfirmed: (data: any) => void
-}
-
-const ContactFormConfirmation: React.FC<TContactFormConfirmationProps> = ({
-  onConfirmed,
-}) => {
+const ContactFormConfirmation: React.FC = () => {
   const navigate = useNavigate()
   const location = useLocation()
   // @ts-ignore
