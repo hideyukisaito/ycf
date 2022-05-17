@@ -34,7 +34,7 @@ const InputErrorAlert: React.FC<TProps> = ({ isVisible = false }) => {
 
   return (
     <div className={classNames.join(' ')}>
-      <p className='font-bold lg:text-lg'>入力内容に誤りがあります。</p>
+      <p className='font-bold lg:text-base'>入力内容に誤りがあります。</p>
       {errorTypes.length > 0 &&
         <ul className="flex flex-col text-xs lg:text-sm text-left gap-1">
           {errorTypes.includes('required') && <li>・必須項目が入力されていません。</li>}

@@ -2,6 +2,7 @@ import React from 'react'
 import useFormError from '../../hooks/useFormError'
 import ErorrLabel from '../ErrorLabel'
 import GeneralTextInput, { type TTextInputProps } from '../GeneralTextInput'
+import InputLabel from '../InputLabel'
 
 const TelephoneInput: React.FC<TTextInputProps> = ({
   label,
@@ -13,9 +14,13 @@ const TelephoneInput: React.FC<TTextInputProps> = ({
   const { error, hasError } = useFormError(name)
   
   return (
-    <label className='block animate-appear w-1/2 md:w-1/3'>
-      <span className='input-label'>{label}</span>
-      {hasError && <ErorrLabel message={error?.message} />}
+    <label className='flex flex-col animate-appear w-full'>
+      <InputLabel label={label}>
+        <span className='hidden lg:inline'>
+          {hasError && <ErorrLabel message={error?.message} />}
+        </span>
+      </InputLabel>
+
       <GeneralTextInput
         type='tel'
         name='tel'
@@ -29,6 +34,10 @@ const TelephoneInput: React.FC<TTextInputProps> = ({
           }
         })}
       />
+
+      <span className='block self-end lg:hidden'>
+        {hasError && <ErorrLabel message={error?.message} />}
+      </span>
     </label>
   )
 }

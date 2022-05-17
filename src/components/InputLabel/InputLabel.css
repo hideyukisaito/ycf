@@ -1,0 +1,3 @@
+.input-label {
+  @apply inline-block mb-2 text-sm lg:text-base text-gray-700;
+}
