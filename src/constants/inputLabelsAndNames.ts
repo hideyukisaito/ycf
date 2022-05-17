@@ -1,4 +1,9 @@
-export const inputLabelsAndNames = {
+type TInputFieldProps = {
+  label: string
+  name: string
+}
+
+export const inputLabelsAndNames: { [key: string]: TInputFieldProps } = {
   inquiryAbout: {
     label: '対象の製品・サービス',
     name: 'inquiry-about',

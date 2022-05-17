@@ -6,8 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'required': '#ff0000',
-        'error': '#ff0000',
+        'required': '#ef4444',
+        'error': '#ef4444',
         'white-overlay': 'rgba(255, 255, 255, 0.8)',
       },
       keyframes: {
