@@ -1,7 +1,16 @@
+import classNames from 'classnames'
+
 const Home: React.FC = () => {
   return (
-    <main className='w-screen h-screen flex flex-col justify-center items-center'>
-      <div>Home</div>
+    <main className={classNames(
+      'flex', 'flex-col', 'justify-center', 'items-center',
+      'w-screen', 'h-screen',
+      'show',
+    )}>
+      <div className={classNames(
+        'w-full', 'h-screen',
+        "bg-[url('/images/hero.jpg')]", 'bg-cover', 'bg-bottom'
+      )}></div>
     </main>
   )
 }

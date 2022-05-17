@@ -50,7 +50,7 @@ const InputErrorAlert: React.FC<TProps> = ({ isVisible = false }) => {
         {
           Object.entries(errorMessages).reduce((result: JSX.Element[], item) => {
             const [_, message] = item
-            result.push(<li>・{message}</li>)
+            result.push(<li key={message}>・{message}</li>)
             return result
           }, [])
         }

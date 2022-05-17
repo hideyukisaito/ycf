@@ -45,12 +45,13 @@ const Contact: React.FC = () => {
   const mainClassNames = [
     'flex', 'flex-col', 'items-center', 'self-center',
     'lg:w-[560px]',
+    'lg:my-12',
     'relative',
   ]
   
   return (
     <FormProvider {...methods}>
-      <div className='flex md:hidden sticky top-0 z-50'>
+      <div className='flex md:hidden sticky t-0 z-50'>
         <InputErrorAlert isVisible={hasError} />
       </div>
 
