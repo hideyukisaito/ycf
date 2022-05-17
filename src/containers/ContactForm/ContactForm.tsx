@@ -12,6 +12,18 @@ import TextInput from '../../components/TextInput'
 import { inputLabelsAndNames } from '../../constants/inputLabelsAndNames'
 import './ContactForm.css'
 
+type TFormSection = {
+  children: React.ReactNode
+}
+
+const FormSection: React.FC<TFormSection> = ({ children }) => {
+  return (
+    <fieldset className='flex flex-col gap-5 md:gap-6'>
+      {children}
+    </fieldset>
+  )
+}
+
 type TProps = {
   onSubmit: (data: any) => void
   onComplete: (data: any) => void
@@ -19,7 +31,13 @@ type TProps = {
 }
 
 export const ContactForm: React.FC<TProps> = ({ onSubmit }) => {
-  const { handleSubmit, formState: { errors } } = useFormContext()
+  const {
+    formState: { errors },
+    getValues,
+    handleSubmit,
+    trigger,
+  } = useFormContext()
+  
   const watchIsCallable = useWatch({ name: inputLabelsAndNames.isCallable.name })
 
   return (
@@ -61,8 +79,9 @@ export const ContactForm: React.FC<TProps> = ({ onSubmit }) => {
         autoComplete='on'
         onSubmit={handleSubmit(onSubmit)}
       >
-        <fieldset className='flex flex-col gap-4'>
+        <FormSection>
           <FormSectionHeader label='1.お問い合わせ内容' isRequired={true} />
+
           <Select
             label={inputLabelsAndNames.inquiryAbout.label}
             name={inputLabelsAndNames.inquiryAbout.name}
@@ -74,21 +93,24 @@ export const ContactForm: React.FC<TProps> = ({ onSubmit }) => {
               'その他',
             ]}
           />
+
           <TextInput
             label={inputLabelsAndNames.inquiryTitle.label}
             name={inputLabelsAndNames.inquiryTitle.name}
             isRequired={true}
           />
+
           <TextArea
             label={inputLabelsAndNames.inquiryDetail.label}
             name={inputLabelsAndNames.inquiryDetail.name}
             rows={6}
             isRequired={true}
           />
-        </fieldset>
+        </FormSection>
 
-        <fieldset className='flex flex-col gap-4'>
+        <FormSection>
           <FormSectionHeader label='2.お名前とメールアドレス' isRequired={true} />
+
           <div className='flex flex-row justify-between gap-4 lg:gap-8'>
             <TextInput
               label={inputLabelsAndNames.familyName.label}
@@ -96,6 +118,7 @@ export const ContactForm: React.FC<TProps> = ({ onSubmit }) => {
               autocomplete='family-name'
               isRequired={true}
             />
+
             <TextInput
               label={inputLabelsAndNames.givenName.label}
               name={inputLabelsAndNames.givenName.name}
@@ -103,55 +126,83 @@ export const ContactForm: React.FC<TProps> = ({ onSubmit }) => {
               isRequired={true}
             />
           </div>
+
           <div className='flex flex-row justify-between gap-4 lg:gap-8'>
             <TextInput
               label={inputLabelsAndNames.familyNameKana.label}
               name={inputLabelsAndNames.familyNameKana.name}
               isRequired={true}
             />
+
             <TextInput
               label={inputLabelsAndNames.givenNameKana.label}
               name={inputLabelsAndNames.givenNameKana.name}
               isRequired={true}
             />
           </div>
+
           <EmailInput
             label={inputLabelsAndNames.email.label}
             name={inputLabelsAndNames.email.name}
             isRequired={true}
+            registerOptions={{
+              onBlur: () => {
+                if (getValues(inputLabelsAndNames.emailRepeat.name)) {
+                  trigger(inputLabelsAndNames.emailRepeat.name)
+                }
+              }
+            }}
           />
+
           <EmailInput
             label={inputLabelsAndNames.emailRepeat.label}
             name={inputLabelsAndNames.emailRepeat.name}
             isRequired={true}
+            registerOptions={{
+              validate: (value: string) => {
+                return value === getValues(inputLabelsAndNames.email.name) || 'メールアドレスが一致しません。'
+              }
+            }}
           />
-        </fieldset>
+        </FormSection>
 
-        <fieldset className='flex flex-col gap-4'>
+        <FormSection>
           <FormSectionHeader label='3.その他の項目' isRequired={false} />
+
           <TextInput
             label={inputLabelsAndNames.organization.label}
             name={inputLabelsAndNames.organization.name}
           />
+
           <PostalCodeInput
             label={inputLabelsAndNames.postalCode.label}
             name={inputLabelsAndNames.postalCode.name}
           />
+
           <TextInput
             label={inputLabelsAndNames.address.label}
             name={inputLabelsAndNames.address.name}
           />
+
           <Checkbox
             label={inputLabelsAndNames.isCallable.label}
             name={inputLabelsAndNames.isCallable.name}
           />
+
           {watchIsCallable &&
             <TelephoneInput
             label={inputLabelsAndNames.tel.label}
             name={inputLabelsAndNames.tel.name}
+            registerOptions={{
+              validate: (value: string) => {
+                if (!watchIsCallable) return true
+
+                return value !== '' || '電話連絡をご希望の場合は入力してください。'
+              }
+            }}
             />
           }
-        </fieldset>
+        </FormSection>
 
         <fieldset className="flex justify-center">
           <input

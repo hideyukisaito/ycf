@@ -8,7 +8,7 @@ type TProps = {
 const InputErrorAlert: React.FC<TProps> = ({ isVisible = false }) => {
   const { formState: { errors } } = useFormContext()
   const hasError = Object.keys(errors).length > 0
-
+  console.log('エラー:', errors)
   const errorTypes = Object.keys(errors).reduce((result: string[], key) => {
     if (!result.includes(errors[key].type)) {
       result.push(errors[key].type)

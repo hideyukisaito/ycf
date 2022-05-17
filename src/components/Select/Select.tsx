@@ -1,5 +1,6 @@
 import React from "react"
 import { useFormContext } from "react-hook-form"
+import InputLabel from "../InputLabel"
 
 type TProps = {
   label: string
@@ -14,7 +15,7 @@ const Select: React.FC<TProps> = ({ label, name, options }) => {
 
   return (
     <label className="block">
-      <span className="inline-block mb-2 text-gray-700">{label}</span>
+      <InputLabel label={label} />
       <select
         {...register(name)}
         name={name}
@@ -22,6 +23,7 @@ const Select: React.FC<TProps> = ({ label, name, options }) => {
           block
           w-full
           mt-1
+          text-sm lg:text-lg
           rounded-md
           border-black-300
           shadow-sm

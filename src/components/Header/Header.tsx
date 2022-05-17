@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   return (
     <div
       className='
-        w-screen
+        w-full
         inline-flex flex-col items-start justify-center
         px-6 md:px-10
         py-4 md:py-8
@@ -19,5 +19,3 @@ const Header: React.FC = () => {
     </div>
   )
 }
-
-export default Header

@@ -1,5 +1,5 @@
-import React from "react"
-import { RegisterOptions, useFormContext } from "react-hook-form"
+import React from 'react'
+import { RegisterOptions, useFormContext } from 'react-hook-form'
 
 export type TTextInputProps = {
   label: string
@@ -48,7 +48,7 @@ const GeneralTextInput: React.FC<TProps> = ({
   Object.assign(registerOptions, {
     required: {
       value: isRequired,
-      message: isRequired ? '必須' : '',
+      message: isRequired ? '必須項目です。' : '',
     }
   })
 

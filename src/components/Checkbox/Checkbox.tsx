@@ -1,5 +1,5 @@
-import React from "react"
-import { useFormContext } from "react-hook-form"
+import React from 'react'
+import { useFormContext } from 'react-hook-form'
 
 type TProps = {
   label: string
@@ -10,20 +10,20 @@ const Checkbox: React.FC<TProps> = ({ label, name }) => {
   const { register } = useFormContext()
 
   return (
-    <div className="block my-2">
-      <label className="flex items-center cursor-pointer">
+    <div className='block my-2'>
+      <label className='flex items-center cursor-pointer'>
         <input
           {...register(name)}
-          type="checkbox"
+          type='checkbox'
           name={name}
-          className="
+          className='
             rounded
             border-black-300
             focus:border-transparent focus:bg-gray-200
             text-black
             focus:ring-1 focus:ring-offset-2 focus:ring-gray-500
-          " />
-        <span className="ml-2">{label}</span>
+          ' />
+        <span className='ml-2 text-sm lg:text-lg'>{label}</span>
       </label>
     </div>
   )

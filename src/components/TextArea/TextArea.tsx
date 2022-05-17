@@ -1,6 +1,7 @@
 import React from "react"
 import { useFormContext } from "react-hook-form"
 import useFormError from "../../hooks/useFormError"
+import InputLabel from "../InputLabel"
 import ErorrLabel from "../ErrorLabel"
 
 type TProps = {
@@ -23,6 +24,7 @@ const TextArea: React.FC<TProps> = ({
     'mt-1',
     'block',
     'w-full',
+    'text-sm', 'lg:text-lg',
     'rounded-md',
     'border-black-300',
     'shadow-sm',
@@ -37,15 +39,23 @@ const TextArea: React.FC<TProps> = ({
   }
 
   return (
-    <label className="block">
-      <span className="inline-block mb-2 text-gray-700">{label}</span>
-      {hasError && <ErorrLabel message={error?.message} />}
+    <label className="flex flex-col">
+      <InputLabel label={label}>
+        <span className='hidden lg:inline'>
+          {hasError && <ErorrLabel message={error?.message} />}
+        </span>
+      </InputLabel>
+
       <textarea
-        {...register(name, { required: { value: isRequired, message: isRequired ? '必須' : '' } })}
+        {...register(name, { required: { value: isRequired, message: isRequired ? '必須項目です。' : '' } })}
         name={name}
         className={classNames.join(' ')}
         rows={rows}
       />
+
+      <span className='block self-end lg:hidden'>
+        {hasError && <ErorrLabel message={error?.message} />}
+      </span>
     </label>
   )
 }
