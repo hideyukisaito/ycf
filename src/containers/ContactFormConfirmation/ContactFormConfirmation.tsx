@@ -117,7 +117,7 @@ export const ContactFormConfirmation: React.FC = () => {
 
     const response = await fetch(request)
     const data = await response.json()
-    console.log('request finished. data:', data)
+    console.log('送信完了', data)
 
     navigate('/contact/complete', { replace: true })
   }
@@ -146,7 +146,7 @@ export const ContactFormConfirmation: React.FC = () => {
       {isSending && <Spinner />}
 
       <div className={classNames(
-        'flex', 'flex-col', 'gap-2',
+        'flex', 'flex-col', 'gap-0', 'md:gap-2',
         isSending ? 'deactivate' : 'activate'
       )}>
         <header className={classNames(

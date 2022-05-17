@@ -6,14 +6,14 @@ export const ContactFormCompletion: React.FC = () => {
   return (
     <div className={classNames(
       'flex', 'flex-col', 'items-center', 'gap-8',
-      'py-12',
+      'py-8', 'lg:py-12',
       'activate',
     )}>
       <header>
         <h1 className='lg:text-xl'>お問い合わせを受け付けました。</h1>
       </header>
 
-      <Link to='/'>
+      <Link to='/' className='relative w-full'>
         <button className={classNames(
           'flex', 'justify-center', 'self-center',
           'py-4', 'lg:px-12', 'lg:py-4',
