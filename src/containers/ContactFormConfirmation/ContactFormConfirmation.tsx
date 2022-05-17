@@ -92,8 +92,20 @@ export const ContactFormConfirmation: React.FC = () => {
   }
 
   // 「送信する」ボタンを押した際のハンドラ
-  const handleConfirmed = () => {
+  const handleConfirmed = async () => {
     if (!isConfirmed) return
+
+    const request = new Request('/inquiry', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify(formData),
+    })
+
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('request finished. data:', data)
 
     navigate('/contact/complete', { replace: true })
   }

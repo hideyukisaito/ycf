@@ -8,6 +8,9 @@ import Home from './pages/Home'
 import ContactFormCompletion from './containers/ContactFormCompletion'
 import ContactFormConfirmation from './containers/ContactFormConfirmation'
 
+// @ts-ignore
+import('./mocks/browser').then(({ worker }) => worker.start())
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
