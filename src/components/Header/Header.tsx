@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import React from 'react'
 
 const Header: React.FC = () => {
@@ -12,7 +13,9 @@ const Header: React.FC = () => {
         shadow
       '
     >
-      <p className='text-lg md:text-2xl font-bold'>Example Inc.</p>
+      <Link to='/'>
+        <p className='text-lg md:text-2xl font-bold'>Example Inc.</p>
+      </Link>
     </div>
   )
 }
