@@ -1,5 +1,7 @@
 import classNames from 'classnames'
+import { useLayoutEffect, useState } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
+import { useLocation } from 'react-router-dom'
 import Checkbox from '../../components/Checkbox'
 import EmailInput from '../../components/EmailInput'
 import FormSectionHeader from '../../components/FormSectionHeader'
@@ -38,10 +40,19 @@ export const ContactForm: React.FC<TProps> = ({ onSubmit }) => {
     trigger,
   } = useFormContext()
   
+  // 電話連絡希望のチェックボックスを監視
   const watchIsCallable = useWatch({ name: inputLabelsAndNames.isCallable.name })
 
+  // fade エフェクト用
+  const { pathname } = useLocation()
+  const [wrapperClassName, setWrapperClassName] = useState('')
+
+  useLayoutEffect(() => {
+    setWrapperClassName(pathname === '/contact' ? 'show' : 'hide')
+  }, [pathname])
+
   return (
-    <div>
+    <div className={wrapperClassName}>
       <header className='flex flex-col justify-center items-center my-8 lg:mt-0 lg:mb-8'>
         <h1 className='flex flex-row gap-1 items-center text-md lg:text-xl font-bold my-1'>
           お問い合わせフォーム

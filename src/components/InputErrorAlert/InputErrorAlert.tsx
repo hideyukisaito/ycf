@@ -8,7 +8,7 @@ type TProps = {
 const InputErrorAlert: React.FC<TProps> = ({ isVisible = false }) => {
   const { formState: { errors } } = useFormContext()
   const hasError = Object.keys(errors).length > 0
-  console.log('エラー:', errors)
+
   const errorTypes = Object.keys(errors).reduce((result: string[], key) => {
     if (!result.includes(errors[key].type)) {
       result.push(errors[key].type)
@@ -34,7 +34,7 @@ const InputErrorAlert: React.FC<TProps> = ({ isVisible = false }) => {
 
   return (
     <div className={classNames.join(' ')}>
-      <p className='font-bold lg:text-lg'>入力内容に誤りがあります。</p>
+      <p className='font-bold lg:text-base'>入力内容に誤りがあります。</p>
       {errorTypes.length > 0 &&
         <ul className="flex flex-col text-xs lg:text-sm text-left gap-1">
           {errorTypes.includes('required') && <li>・必須項目が入力されていません。</li>}

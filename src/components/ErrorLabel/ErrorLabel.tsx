@@ -11,7 +11,7 @@ const ErorrLabel: React.FC<TProps> = ({ message }) => {
   return (
     <span className={classNames(
       'inline-block',
-      'ml-2', 'mb-2',
+      'ml-2',
       'font-bold', 'text-xs', 'lg:text-sm',
       'text-error',
     )}>※{message}</span>

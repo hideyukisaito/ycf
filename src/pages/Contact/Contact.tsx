@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useLocation, useNavigate, useNavigationType, Outlet } from 'react-router-dom'
@@ -41,17 +42,19 @@ const Contact: React.FC = () => {
   const handleComplete = (data: any) => console.log('完了', data)
   const handleError = (data: any) => console.log('エラー', data)
 
+  const mainClassNames = [
+    'flex', 'flex-col', 'items-center', 'self-center',
+    'lg:w-[560px]',
+    'relative',
+  ]
+  
   return (
     <FormProvider {...methods}>
       <div className='flex md:hidden sticky top-0 z-50'>
         <InputErrorAlert isVisible={hasError} />
       </div>
 
-      <main className='
-        flex flex-col items-center self-center
-        lg:w-[560px]
-        relative
-      '>
+      <main className={classNames(mainClassNames)}>
         {location.pathname !== '/contact'
           ? <Outlet />
           : <ContactForm

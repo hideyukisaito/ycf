@@ -32,6 +32,7 @@ const GeneralTextInput: React.FC<TProps> = ({
     'block',
     'w-full',
     'rounded-md',
+    'box-border',
     'border-black-300',
     'shadow-sm',
     'text-sm', 'lg:text-lg',

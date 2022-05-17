@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         'required': '#ff0000',
         'error': '#ff0000',
+        'white-overlay': 'rgba(255, 255, 255, 0.8)',
       },
       keyframes: {
         appear: {

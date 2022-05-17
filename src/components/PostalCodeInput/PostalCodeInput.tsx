@@ -14,9 +14,9 @@ const PostalCodeInput: React.FC<TTextInputProps> = ({
   const { error, hasError } = useFormError(name)
   
   return (
-    <label className='block w-1/2 md:w-1/3'>
+    <label className='block w-1/2 md:w-full'>
       <InputLabel label={label} />
-      {hasError && <ErorrLabel message={error?.message} />}
+      {/* {hasError && <ErorrLabel message={error?.message} />} */}
       <GeneralTextInput
         type='text'
         name={name}
