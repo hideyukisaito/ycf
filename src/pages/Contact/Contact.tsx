@@ -39,9 +39,6 @@ const Contact: React.FC = () => {
     })
   }
 
-  const handleComplete = (data: any) => console.log('完了', data)
-  const handleError = (data: any) => console.log('エラー', data)
-
   const mainClassNames = [
     'flex', 'flex-col', 'items-center', 'self-center',
     'lg:w-[560px]',
@@ -60,8 +57,6 @@ const Contact: React.FC = () => {
           ? <Outlet />
           : <ContactForm
               onSubmit={handleSubmit}
-              onComplete={handleComplete}
-              onError={handleError}
             />
         }
       </main>

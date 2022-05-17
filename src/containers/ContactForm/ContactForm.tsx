@@ -28,8 +28,6 @@ const FormSection: React.FC<TFormSection> = ({ children }) => {
 
 type TProps = {
   onSubmit: (data: any) => void
-  onComplete: (data: any) => void
-  onError: (error: any) => void
 }
 
 export const ContactForm: React.FC<TProps> = ({ onSubmit }) => {

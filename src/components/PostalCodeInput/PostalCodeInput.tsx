@@ -15,8 +15,12 @@ const PostalCodeInput: React.FC<TTextInputProps> = ({
   
   return (
     <label className='block w-1/2 md:w-full'>
-      <InputLabel label={label} />
-      {/* {hasError && <ErorrLabel message={error?.message} />} */}
+      <InputLabel label={label}>
+        <span className='hidden lg:inline'>
+          {hasError && <ErorrLabel message={error?.message} />}
+        </span>
+      </InputLabel>
+      
       <GeneralTextInput
         type='text'
         name={name}
@@ -31,6 +35,10 @@ const PostalCodeInput: React.FC<TTextInputProps> = ({
           }
         })}
       />
+
+      <span className='block self-end lg:hidden'>
+        {hasError && <ErorrLabel message={error?.message} />}
+      </span>
     </label>
   )
 }
