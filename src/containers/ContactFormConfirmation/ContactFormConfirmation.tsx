@@ -4,6 +4,7 @@ import { useNavigate, useNavigationType, useLocation } from 'react-router-dom'
 import { inputLabelsAndNames } from '../../constants/inputLabelsAndNames'
 import { useHistoryStack } from '../../hooks/useHistoryStack'
 import { Spinner } from '../../components/Spinner/Spinner'
+import { Button } from '../../components/Button/Button'
 
 // ------------------------------------------------------------------------
 type TSectionProps = {
@@ -29,31 +30,23 @@ const FormDataSection: React.FC<TSectionProps> = ({ title, children }) => {
 
 // ------------------------------------------------------------------------
 type TFormDataProps = {
-  title: string
+  label: string
   content: string
 }
 
-const FormData: React.FC<TFormDataProps> = ({ title, content }) => {
+const FormData: React.FC<TFormDataProps> = ({ label, content }) => {
   return (
-    <div className={classNames(
-      'group',
-      'flex', 'flex-row', 'justify-between', 'items-center',
-      'px-2', 'md:px-4', 'py-2',
-      'text-sm', 'lg:text-base',
-      'lg:hover:bg-gray-200',
-      'rounded-md',
-      'lg:cursor-pointer',
-    )}>
+    <div 
+      className={classNames(
+        'group',
+        'flex', 'flex-row', 'justify-between', 'items-center',
+        'px-2', 'md:px-4', 'py-2',
+        'text-sm', 'lg:text-base',
+      )}
+    >
       <div>
-        <h4 className='text-md leading-loose'>{title}：</h4>
+        <h4 className='text-md leading-loose'>{label}：</h4>
         <p className='leading-relaxed'>{content || '-'}</p>
-      </div>
-
-      <div className='hidden flex-row items-center gap-1 lg:group-hover:flex'>
-        <svg xmlns="http://www.w3.org/2000/svg" className="inline-block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-        </svg>
-        <p className='inline-block'>編集</p>
       </div>
     </div>
   )
@@ -89,6 +82,10 @@ export const ContactFormConfirmation: React.FC = () => {
   const history = useHistoryStack()
   // @ts-ignore
   const { formData } = location.state
+
+  const handleBackToEdit = (e: React.ChangeEvent<HTMLInputElement>) => {
+    navigate('/contact', { replace: false })
+  }
 
   // 「個人情報の取り扱い」のチェックボックスを押した際のハンドラ
   const handleChangeConfirmationCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -168,87 +165,78 @@ export const ContactFormConfirmation: React.FC = () => {
 
         <FormDataSection title='お問い合わせ内容'>
           <FormData
-            title={inputLabelsAndNames.inquiryAbout.label}
+            label={inputLabelsAndNames.inquiryAbout.label}
             content={formData[inputLabelsAndNames.inquiryAbout.name]}
           />
 
           <FormData
-            title={inputLabelsAndNames.inquiryTitle.label}
+            label={inputLabelsAndNames.inquiryTitle.label}
             content={formData[inputLabelsAndNames.inquiryTitle.name]}
           />
 
           <FormData
-            title={inputLabelsAndNames.inquiryDetail.label}
+            label={inputLabelsAndNames.inquiryDetail.label}
             content={formData[inputLabelsAndNames.inquiryDetail.name]}
           />
         </FormDataSection>
 
         <FormDataSection title='お名前とメールアドレス'>
           <FormData
-            title='お名前'
+            label='お名前'
             content={`${formData[inputLabelsAndNames.familyName.name]} ${formData[inputLabelsAndNames.givenName.name]}`}
           />
 
           <FormData
-            title='お名前 (ふりがな)'
+            label='お名前 (ふりがな)'
             content={`${formData[inputLabelsAndNames.familyNameKana.name]} ${formData[inputLabelsAndNames.givenNameKana.name]}`}
           />
 
           <FormData
-            title={inputLabelsAndNames.email.label}
+            label={inputLabelsAndNames.email.label}
             content={formData[inputLabelsAndNames.email.name]}
           />
 
           <FormData
-            title={inputLabelsAndNames.emailRepeat.label}
+            label={inputLabelsAndNames.emailRepeat.label}
             content={formData[inputLabelsAndNames.emailRepeat.name]}
           />
         </FormDataSection>
 
         <FormDataSection title='その他'>
           <FormData
-            title={inputLabelsAndNames.organization.label}
+            label={inputLabelsAndNames.organization.label}
             content={formData[inputLabelsAndNames.organization.name]}
           />
 
           <FormData
-            title={inputLabelsAndNames.postalCode.label}
+            label={inputLabelsAndNames.postalCode.label}
             content={formData[inputLabelsAndNames.postalCode.name]}
           />
 
           <FormData
-            title={inputLabelsAndNames.isCallable.label}
+            label={inputLabelsAndNames.isCallable.label}
             content={formData[inputLabelsAndNames.isCallable.name] ? 'はい' : 'いいえ'}
           />
 
           {formData[inputLabelsAndNames.isCallable.name] &&
             <FormData
-              title={inputLabelsAndNames.tel.label}
+              label={inputLabelsAndNames.tel.label}
               content={formData[inputLabelsAndNames.tel.name]}
             />
           }
         </FormDataSection>
 
-        <button
-          className={classNames(
-            'lg:hidden',
-            'flex', 'justify-center', 'self-center',
-            'py-4', 'lg:px-12',
-            'w-full', 'lg:w-[200px]',
-            'bg-white', 'active:bg-black',
-            'border-solid', 'border-black', 'border-[2px]',
-            'text-black', 'active:text-white', 'text-bold',
-            'rounded-md',
-          )}
-        >
-          入力内容を修正する
-        </button>
+        <Button
+          label='入力内容を修正する'
+          fill={false}
+          onClick={handleBackToEdit}
+        />
 
         <label className='
           flex items-center justify-center self-center
           w-full
           p-8
-          my-8 lg:mt-2
+          my-8 lg:mt-8 lg:mb-4
           bg-blue-100
           rounded-md
           cursor-pointer
@@ -276,25 +264,11 @@ export const ContactFormConfirmation: React.FC = () => {
           </span>
         </label>
 
-        <button
-          className={classNames(
-            'flex', 'justify-center', 'self-center',
-            'py-4', 'lg:px-12', 'lg:py-6',
-            'w-full',
-            'bg-black', 'disabled:bg-gray-200', 'active:bg-gray-500', 'lg:hover:bg-gray-400',
-            'text-white', 'text-bold',
-            'lg:text-base',
-            'rounded-md',
-            'lg:transition-colors', 'lg:duration-200',
-            'disabled:hidden',
-            'disabled:cursor-not-allowed',
-            isConfirmed && 'animate-appear',
-          )}
+        <Button
+          label='送信する'
           disabled={!isConfirmed}
           onClick={handleConfirmed}
-        >
-          送信する
-        </button>
+        />
       </div>
     </div>
   )

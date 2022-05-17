@@ -223,7 +223,7 @@ export const ContactForm: React.FC<TProps> = ({ onSubmit }) => {
               flex justify-center
               py-4
               w-full
-              lg:w-auto
+              lg:w-full
               lg:px-12
               bg-black
               text-white text-bold
