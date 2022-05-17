@@ -13,7 +13,7 @@ const TelephoneInput: React.FC<TTextInputProps> = ({
   const { error, hasError } = useFormError(name)
   
   return (
-    <label className='block animate-appear'>
+    <label className='block animate-appear w-1/2 md:w-1/3'>
       <span className='input-label'>{label}</span>
       {hasError && <ErorrLabel message={error?.message} />}
       <GeneralTextInput

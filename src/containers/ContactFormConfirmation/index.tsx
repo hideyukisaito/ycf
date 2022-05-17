@@ -1,3 +1,3 @@
-import ContactFormConfirmation from './ContactFormConfirmation'
+import { ContactFormConfirmation } from './ContactFormConfirmation'
 
 export default ContactFormConfirmation

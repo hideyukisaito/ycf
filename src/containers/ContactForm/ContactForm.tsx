@@ -1,8 +1,9 @@
 import classNames from 'classnames'
-import { useForm, useFormContext, useWatch } from 'react-hook-form'
+import { useFormContext, useWatch } from 'react-hook-form'
 import Checkbox from '../../components/Checkbox'
 import EmailInput from '../../components/EmailInput'
 import FormSectionHeader from '../../components/FormSectionHeader'
+import InputErrorAlert from '../../components/InputErrorAlert'
 import PostalCodeInput from '../../components/PostalCodeInput'
 import Select from '../../components/Select'
 import TelephoneInput from '../../components/TelephoneInput'
@@ -11,14 +12,14 @@ import TextInput from '../../components/TextInput'
 import { inputLabelsAndNames } from '../../constants/inputLabelsAndNames'
 import './ContactForm.css'
 
-type Props = {
+type TProps = {
   onSubmit: (data: any) => void
   onComplete: (data: any) => void
   onError: (error: any) => void
 }
 
-export const ContactForm: React.FC<Props> = ({ onSubmit }) => {
-  const { handleSubmit } = useFormContext()
+export const ContactForm: React.FC<TProps> = ({ onSubmit }) => {
+  const { handleSubmit, formState: { errors } } = useFormContext()
   const watchIsCallable = useWatch({ name: inputLabelsAndNames.isCallable.name })
 
   return (
@@ -37,6 +38,15 @@ export const ContactForm: React.FC<Props> = ({ onSubmit }) => {
           もご覧ください。
         </p>
       </header>
+
+      <div className={classNames(
+        'hidden',
+        'md:flex',
+        'w-full',
+        'mb-8',
+      )}>
+        <InputErrorAlert isVisible={Object.keys(errors).length > 0} />
+      </div>
       
       <form
         className={classNames(

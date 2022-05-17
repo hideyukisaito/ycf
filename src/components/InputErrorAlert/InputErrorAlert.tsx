@@ -1,11 +1,11 @@
 import React from "react"
 import { useFormContext } from "react-hook-form"
 
-type Props = {
+type TProps = {
   isVisible?: boolean
 }
 
-const InputErrorAlert: React.FC<Props> = ({ isVisible = false }) => {
+const InputErrorAlert: React.FC<TProps> = ({ isVisible = false }) => {
   const { formState: { errors } } = useFormContext()
   const hasError = Object.keys(errors).length > 0
 
@@ -15,7 +15,6 @@ const InputErrorAlert: React.FC<Props> = ({ isVisible = false }) => {
     }
     return result
   }, [])
-  console.log('error types', errorTypes)
 
   const classNames = [
     'flex',
@@ -35,9 +34,9 @@ const InputErrorAlert: React.FC<Props> = ({ isVisible = false }) => {
 
   return (
     <div className={classNames.join(' ')}>
-      <p className='font-bold'>入力内容に誤りがあります。</p>
+      <p className='font-bold lg:text-lg'>入力内容に誤りがあります。</p>
       {errorTypes.length > 0 &&
-        <ul className="flex flex-col text-xs text-left gap-1">
+        <ul className="flex flex-col text-xs lg:text-sm text-left gap-1">
           {errorTypes.includes('required') && <li>・必須項目が入力されていません。</li>}
           {errorTypes.includes('pattern') && <li>・入力形式に誤りがあります。</li>}
         </ul>

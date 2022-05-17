@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useNavigationType, useLocation } from 'react-router-dom'
 import { inputLabelsAndNames } from '../../constants/inputLabelsAndNames'
+import { useHistoryStack } from '../../hooks/useHistoryStack'
 
 // ------------------------------------------------------------------------
 type TSectionProps = {
@@ -76,13 +77,14 @@ const Note: React.FC<TNoteProps> = ({ children }) => {
 }
 
 // ------------------------------------------------------------------------
-const ContactFormConfirmation: React.FC = () => {
+export const ContactFormConfirmation: React.FC = () => {
+  const [isConfirmed, setIsConfirmed] = useState(false)
   const navigate = useNavigate()
+  const navigationType = useNavigationType()
   const location = useLocation()
+  const history = useHistoryStack()
   // @ts-ignore
   const { formData } = location.state
-
-  const [isConfirmed, setIsConfirmed] = useState(false)
 
   // 「個人情報の取り扱い」のチェックボックスを押した際のハンドラ
   const handleChangeConfirmationCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -95,6 +97,13 @@ const ContactFormConfirmation: React.FC = () => {
 
     navigate('/contact/complete', { replace: true })
   }
+
+  // 入力画面からブラウザの「進む」機能で訪問した場合は入力画面に戻す
+  useEffect(() => {
+    if (navigationType === 'POP' && history.length === 0) {
+      navigate('/contact', { replace: true })
+    }
+  }, [navigationType, history])
 
   return (
     <div className={classNames(
@@ -254,5 +263,3 @@ const ContactFormConfirmation: React.FC = () => {
     </div>
   )
 }
-
-export default ContactFormConfirmation

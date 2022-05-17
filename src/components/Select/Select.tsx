@@ -1,13 +1,13 @@
 import React from "react"
 import { useFormContext } from "react-hook-form"
 
-type Props = {
+type TProps = {
   label: string
   name: string
   options: string[]
 }
 
-const Select: React.FC<Props> = ({ label, name, options }) => {
+const Select: React.FC<TProps> = ({ label, name, options }) => {
   const optionElements = options.map((option) => <option key={option}>{option}</option>)
 
   const { register } = useFormContext()

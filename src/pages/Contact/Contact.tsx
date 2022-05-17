@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import classNames from 'classnames'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useLocation, useNavigate, useNavigationType, Outlet } from 'react-router-dom'
 import InputErrorAlert from '../../components/InputErrorAlert'
@@ -17,9 +16,9 @@ const Contact: React.FC = () => {
 
   // /contact/complete から戻った場合はフォームをリセットする
   useEffect(() => {
-    if (history[history.length - 1] === '/contact/complete' &&
-        location.pathname === '/contact' &&
-        navigationType === 'POP') {
+    if (location.pathname !== '/contact' || navigationType !== 'POP') return
+
+    if (history[history.length - 1] === '/contact/complete') {
       methods.reset()
     }
   }, [history.length, location.pathname, navigationType])
@@ -60,14 +59,6 @@ const Contact: React.FC = () => {
         lg:w-[560px]
         relative
       '>
-        <div className={classNames(
-          'hidden',
-          'md:flex',
-          'w-full',
-        )}>
-          <InputErrorAlert isVisible={hasError} />
-        </div>
-        
         {location.pathname !== '/contact'
           ? <Outlet />
           : <ContactForm

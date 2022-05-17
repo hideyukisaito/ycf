@@ -1,10 +1,10 @@
 import React from "react"
 
-type Props = {
+type TProps = {
   message: string | undefined
 }
 
-const ErorrLabel: React.FC<Props> = ({ message }) => {
+const ErorrLabel: React.FC<TProps> = ({ message }) => {
   if (message?.length === 0) return null
 
   return (
