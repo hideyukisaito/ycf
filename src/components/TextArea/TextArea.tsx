@@ -3,14 +3,14 @@ import { useFormContext } from "react-hook-form"
 import useFormError from "../../hooks/useFormError"
 import ErorrLabel from "../ErrorLabel"
 
-type Props = {
+type TProps = {
   label: string
   name: string
   rows: number
   isRequired?: boolean
 }
 
-const TextArea: React.FC<Props> = ({
+const TextArea: React.FC<TProps> = ({
   label,
   name,
   rows,
@@ -33,7 +33,7 @@ const TextArea: React.FC<Props> = ({
   ]
 
   if (hasError) {
-    classNames.push('border-solid', 'border-error', 'border-2')
+    classNames.push('border-solid', 'border-error', 'border-[3px]')
   }
 
   return (

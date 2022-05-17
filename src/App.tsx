@@ -2,18 +2,16 @@ import './App.css'
 import Header from './components/Header'
 import Breadcrumbs from './components/Breadcrumbs'
 import Footer from './components/Footer'
-import ContactForm from './containers/ContactForm/ContactForm'
+import { Outlet } from 'react-router-dom'
 
-function App() {
-  const onSubmit = (data: any) => console.log(data)
-
+const App: React.FC = () => {
   return (
-      <div className='App container flex flex-col'>
-        <Header />
-        <Breadcrumbs />
-        <ContactForm onSubmit={onSubmit} />
-        <Footer />
-      </div>
+    <div className='App flex flex-col'>
+      <Header />
+      <Breadcrumbs />
+      <Outlet />
+      <Footer />
+    </div>
   )
 }
 

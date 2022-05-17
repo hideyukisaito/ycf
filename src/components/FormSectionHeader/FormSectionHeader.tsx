@@ -2,12 +2,12 @@ import React from "react"
 import OptionalLabel from "../OptionalLabel"
 import RequiredLabel from "../RequiredLabel"
 
-type Props = {
+type TProps = {
   label: string
   isRequired: boolean
 }
 
-const FormSectionHeader: React.FC<Props> = ({ label, isRequired }: Props) => {
+const FormSectionHeader: React.FC<TProps> = ({ label, isRequired }) => {
   return (
     <header className="flex flex-row items-center gap-2">
       {

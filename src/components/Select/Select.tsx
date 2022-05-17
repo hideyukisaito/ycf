@@ -1,18 +1,22 @@
 import React from "react"
+import { useFormContext } from "react-hook-form"
 
-type Props = {
+type TProps = {
   label: string
+  name: string
   options: string[]
-  name?: string
 }
 
-const Select: React.FC<Props> = ({ label, options, name }) => {
+const Select: React.FC<TProps> = ({ label, name, options }) => {
   const optionElements = options.map((option) => <option key={option}>{option}</option>)
+
+  const { register } = useFormContext()
 
   return (
     <label className="block">
       <span className="inline-block mb-2 text-gray-700">{label}</span>
       <select
+        {...register(name)}
         name={name}
         className="
           block

@@ -15,7 +15,7 @@ const TextInput: React.FC<TTextInputProps> = ({
   const { error, hasError } = useFormError(name)
 
   return (
-    <label className='block'>
+    <label className='block flex-grow'>
       <span className='input-label'>{label}</span>
       {hasError && <ErorrLabel message={error?.message} />}
       <GeneralTextInput

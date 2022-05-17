@@ -12,11 +12,11 @@ export type TTextInputProps = {
   registerOptions?: Partial<RegisterOptions>
 }
 
-type Props = Partial<TTextInputProps> & {
+type TProps = Partial<TTextInputProps> & {
   isError?: boolean
 }
 
-const GeneralTextInput: React.FC<Props> = ({
+const GeneralTextInput: React.FC<TProps> = ({
   name,
   type = 'text',
   autocomplete = '',
@@ -34,6 +34,7 @@ const GeneralTextInput: React.FC<Props> = ({
     'rounded-md',
     'border-black-300',
     'shadow-sm',
+    'text-sm', 'lg:text-lg',
     'focus:border-indigo-300',
     'focus:ring',
     'focus:ring-indigo-200',
@@ -41,7 +42,7 @@ const GeneralTextInput: React.FC<Props> = ({
   ]
 
   if (isError) {
-    classNames.push('border-solid', 'border-error', 'border-2')
+    classNames.push('border-solid', 'border-error', 'border-[3px]')
   }
 
   Object.assign(registerOptions, {
