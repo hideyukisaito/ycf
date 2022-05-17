@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom'
 
 const App: React.FC = () => {
   return (
-    <div className='App flex flex-col relative'>
+    <div className='App flex flex-col relative overflow-x-hidden'>
       <Header />
       <Outlet />
       <Footer />
