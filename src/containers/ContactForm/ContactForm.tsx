@@ -159,6 +159,12 @@ export const ContactForm: React.FC<TProps> = ({ onSubmit }) => {
               label={inputLabelsAndNames.familyNameKana.label}
               name={inputLabelsAndNames.familyNameKana.name}
               isRequired={true}
+              registerOptions={{
+                pattern: {
+                  value: /^[ぁ-んー　]*$/,
+                  message: 'ひらがなのみ',
+                }
+              }}
               additionalStyles={['s14-mr-2']}
             />
 
@@ -166,6 +172,12 @@ export const ContactForm: React.FC<TProps> = ({ onSubmit }) => {
               label={inputLabelsAndNames.givenNameKana.label}
               name={inputLabelsAndNames.givenNameKana.name}
               isRequired={true}
+              registerOptions={{
+                pattern: {
+                  value: /^[ぁ-んー　]*$/,
+                  message: 'ひらがなのみ',
+                }
+              }}
               additionalStyles={['s14-ml-2']}
             />
           </div>

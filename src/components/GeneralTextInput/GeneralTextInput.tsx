@@ -37,14 +37,14 @@ const GeneralTextInput: React.FC<TProps> = ({
     'border-black-300',
     'shadow-sm',
     'text-sm', 'lg:text-lg',
-    'focus:border-indigo-300',
+    'focus:border-blue-300',
     'focus:ring',
-    'focus:ring-indigo-200',
+    'focus:ring-blue-200',
     'focus:ring-opacity-50',
   ]
 
   if (isError) {
-    classNames.push('border-solid', 'border-error', 'border-[3px]')
+    classNames.push('border-solid', 'border-error', 'border-[1px] bg-red-200')
   }
 
   Object.assign(registerOptions, {

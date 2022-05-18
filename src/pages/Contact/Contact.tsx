@@ -38,13 +38,6 @@ const Contact: React.FC = () => {
       }
     })
   }
-
-  const mainClassNames = [
-    'flex', 'flex-col', 'items-center', 'self-center',
-    'lg:w-[560px]',
-    'lg:my-12',
-    'relative',
-  ]
   
   return (
     <FormProvider {...methods}>
@@ -52,7 +45,12 @@ const Contact: React.FC = () => {
         <InputErrorAlert isVisible={hasError} />
       </div>
 
-      <main className={classNames(mainClassNames)}>
+      <main className={classNames([
+        'flex', 'flex-col', 'items-center',
+        'lg:w-[500px]',
+        'mx-auto', 'lg:my-12',
+        'relative',
+      ])}>
         {location.pathname !== '/contact'
           ? <Outlet />
           : <ContactForm
