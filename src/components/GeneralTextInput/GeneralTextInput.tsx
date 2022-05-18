@@ -10,6 +10,7 @@ export type TTextInputProps = {
   isEnableAutoComplete?: boolean
   isRequired?: boolean
   registerOptions?: Partial<RegisterOptions>
+  additionalStyles?: string[]
 }
 
 type TProps = Partial<TTextInputProps> & {

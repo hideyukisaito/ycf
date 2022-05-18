@@ -11,7 +11,8 @@ export const Spinner: React.FC = () => {
       'animate-pulse',
     )}>
       <p className={classNames(
-        'text-base', 'lg:text-xl'
+        'text-base', 'lg:text-xl',
+        's14-mb-8',
       )}>送信中…</p>
 
       <div className={classNames(

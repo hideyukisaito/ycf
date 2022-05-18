@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import React from 'react'
 import useFormError from '../../hooks/useFormError'
 import ErorrLabel from '../ErrorLabel'
@@ -12,11 +13,16 @@ const TextInput: React.FC<TTextInputProps> = ({
   isRequired = false,
   autocomplete,
   registerOptions = {},
+  additionalStyles = [],
 }) => {
   const { error, hasError } = useFormError(name)
 
   return (
-    <label className='flex flex-col flex-grow'>
+    <label className={classNames(
+      'flex', 'flex-col', 'flex-grow',
+      's14-mb-8',
+      ...additionalStyles,
+    )}>
       <InputLabel label={label}>
         <span className='hidden lg:inline'>
           {hasError && <ErorrLabel message={error?.message} />}

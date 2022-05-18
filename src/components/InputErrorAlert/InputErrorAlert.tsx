@@ -45,7 +45,7 @@ const InputErrorAlert: React.FC<TProps> = ({ isVisible = false }) => {
       'bg-error',
       hasError ? 'block' : 'hidden',
     )}>
-      <p className='font-bold lg:text-base'>以下の入力内容をご確認ください。</p>
+      <p className='font-bold lg:text-base s14-mb-8'>以下の入力内容をご確認ください。</p>
       <ul className="flex flex-col text-xs lg:text-sm text-left gap-1">
         {
           Object.entries(errorMessages).reduce((result: JSX.Element[], item) => {

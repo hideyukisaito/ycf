@@ -14,7 +14,7 @@ const EmailInput: React.FC<TTextInputProps> = ({
   const { error, hasError } = useFormError(name)
   
   return (
-    <label className='flex flex-col'>
+    <label className='flex flex-col s14-mb-8'>
       <InputLabel label={label}>
         <span className='hidden lg:inline'>
           {hasError && <ErorrLabel message={error?.message} />}

@@ -9,7 +9,7 @@ export const ContactFormCompletion: React.FC = () => {
       'py-8', 'lg:py-12',
       'activate',
     )}>
-      <header>
+      <header className='s14-mb-16'>
         <h1 className='lg:text-xl'>お問い合わせを受け付けました。</h1>
       </header>
 

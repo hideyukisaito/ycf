@@ -2,6 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+@media not all and (min-resolution:.001dpcm) {
+  @supports (not (translate: none)) {
+    .s14-ml-2 {
+      @apply ml-2;
+    }
+
+    .s14-ml-4 {
+      @apply ml-4;
+    }
+
+    .s14-mb-8 {
+      @apply mb-8;
+    }
+
+    .s14-mb-16 {
+      @apply mb-16;
+    }
+
+    .s14-mr-2 {
+      @apply mr-2;
+    }
+
+    .s14-ml-2 {
+      @apply ml-2;
+    }
+  }
+}
+
 body {
   margin: 0;
   font-family: zen-kaku-gothic-new, sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

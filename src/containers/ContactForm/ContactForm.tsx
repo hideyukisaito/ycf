@@ -20,8 +20,10 @@ type TFormSection = {
 
 const FormSection: React.FC<TFormSection> = ({ children }) => {
   return (
-    <fieldset className='flex flex-col gap-5 md:gap-6'>
-      {children}
+    <fieldset>
+      <div className='flex flex-col gap-5 md:gap-6 s14-mb-16'>
+        {children}
+      </div>
     </fieldset>
   )
 }
@@ -84,6 +86,7 @@ export const ContactForm: React.FC<TProps> = ({ onSubmit }) => {
         'md:flex',
         'w-full',
         'mb-8',
+        's14-mb-16',
       )}>
         <InputErrorAlert isVisible={Object.keys(errors).length > 0} />
       </div>
@@ -139,6 +142,7 @@ export const ContactForm: React.FC<TProps> = ({ onSubmit }) => {
               name={inputLabelsAndNames.familyName.name}
               autocomplete='family-name'
               isRequired={true}
+              additionalStyles={['s14-mr-2']}
             />
 
             <TextInput
@@ -146,6 +150,7 @@ export const ContactForm: React.FC<TProps> = ({ onSubmit }) => {
               name={inputLabelsAndNames.givenName.name}
               autocomplete='given-name'
               isRequired={true}
+              additionalStyles={['s14-ml-2']}
             />
           </div>
 
@@ -154,12 +159,14 @@ export const ContactForm: React.FC<TProps> = ({ onSubmit }) => {
               label={inputLabelsAndNames.familyNameKana.label}
               name={inputLabelsAndNames.familyNameKana.name}
               isRequired={true}
+              additionalStyles={['s14-mr-2']}
             />
 
             <TextInput
               label={inputLabelsAndNames.givenNameKana.label}
               name={inputLabelsAndNames.givenNameKana.name}
               isRequired={true}
+              additionalStyles={['s14-ml-2']}
             />
           </div>
 

@@ -9,11 +9,11 @@ type TProps = {
 
 const FormSectionHeader: React.FC<TProps> = ({ label, isRequired }) => {
   return (
-    <header className="flex flex-row items-center gap-2">
+    <header className="flex flex-row items-center gap-2 s14-mb-8">
       {
         isRequired ? <RequiredLabel /> : <OptionalLabel />
       }
-      <legend className="font-bold"><h2>{label}</h2></legend>
+      <legend className="font-bold s14-ml-2"><h2>{label}</h2></legend>
     </header>
   )
 }

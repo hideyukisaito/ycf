@@ -32,6 +32,7 @@ const TextArea: React.FC<TProps> = ({
     'focus:ring',
     'focus:ring-indigo-200',
     'focus:ring-opacity-50',
+    's14-mb-4',
   ]
 
   if (hasError) {

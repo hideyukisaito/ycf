@@ -10,7 +10,7 @@ const Checkbox: React.FC<TProps> = ({ label, name }) => {
   const { register } = useFormContext()
 
   return (
-    <div className='block my-2'>
+    <div className='block my-2 s14-mb-8'>
       <label className='flex items-center cursor-pointer'>
         <input
           {...register(name)}

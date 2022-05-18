@@ -14,7 +14,7 @@ const Select: React.FC<TProps> = ({ label, name, options }) => {
   const { register } = useFormContext()
 
   return (
-    <label className="block">
+    <label className="block s14-mb-8">
       <InputLabel label={label} />
       <select
         {...register(name)}
